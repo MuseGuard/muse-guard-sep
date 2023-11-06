@@ -1,8 +1,8 @@
 import React from "react";
 import useSensorData from "./useSensorData";
 
-const SensorData = ({ url }) => {
-    const { sensorData, isLoading, fetchData } = useSensorData(url);
+const SensorData = () => {
+    const { sensorData, isLoading, fetchData } = useSensorData();
 
     const handleRefreshClick = () => {
         fetchData(); 

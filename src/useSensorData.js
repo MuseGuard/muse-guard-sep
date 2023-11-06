@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 
-const useSensorData = (url) => {
+const useSensorData = () => {
     const [sensorData, setSensorData] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const url = ''
 
     const fetchData = () => {
         setIsLoading(true);
@@ -19,14 +20,11 @@ const useSensorData = (url) => {
             });
     };
 
-    useEffect(() => {
-        fetchData(); // Fetch initial data
-    }, [url]);
 
     return {
         sensorData,
         isLoading,
-        fetchData, // Add a function to fetch data
+        fetchData, 
     };
 };
 
