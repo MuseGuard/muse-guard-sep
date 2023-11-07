@@ -1,5 +1,5 @@
 import React from "react";
-import useSensorData from "./useSensorData";
+import useSensorData from "../Hooks/useSensorData";
 
 const SensorData = () => {
     const { sensorData, isLoading, fetchData } = useSensorData();

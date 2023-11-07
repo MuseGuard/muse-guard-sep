@@ -1,5 +1,5 @@
 import React from "react";
-import SensorData from "./SensorData"; 
+import SensorData from "./Pages/SensorData"; 
 
  // Replace with your actual API URL
 
