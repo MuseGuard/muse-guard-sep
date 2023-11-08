@@ -1,13 +1,43 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import Home from './Pages/Home';
+import About from './Pages/About';
 import './index.css';
+import { RouterProvider, createHashRouter } from "react-router-dom";
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Info from './Pages/Info';
+import ManageArtefact from './Pages/ManageArtefact';
+
+const router = createHashRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        path: "/",
+        element: <Home/>,
+      },
+      {
+        path: "/about",
+        element: <About/>,
+      },
+      {
+        path: "/data",
+        element: <Info/>,
+      },
+      {
+        path: "/manage",
+        element: <ManageArtefact/>,
+      },
+    ],
+  },
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router}/>
   </React.StrictMode>
 );
 

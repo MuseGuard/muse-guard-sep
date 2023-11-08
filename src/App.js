@@ -1,13 +1,16 @@
-import React from "react";
-import SensorData from "./Pages/SensorData"; 
-
- // Replace with your actual API URL
+import React from 'react';
+import Nav from './Pages/Nav';
+import { Outlet } from 'react-router-dom';
+import './App.css'; // Import the custom CSS file
 
 function App() {
   return (
-    <div className="App">
-      <SensorData /> 
-    </div>
+    <main className="app-main">
+      <Nav />
+      <div className="app-content">
+        <Outlet />
+      </div>
+    </main>
   );
 }
 

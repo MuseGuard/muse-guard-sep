@@ -1,0 +1,32 @@
+/* Nav.css */
+
+.nav-bar {
+    background-color: #333; /* Change this to your desired background color */
+    color: #fff; /* Change this to your desired text color */
+    padding: 10px;
+  }
+  
+  .nav-bar-container {
+    max-width: 1200px; /* Adjust the maximum width as needed */
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .nav-bar-list {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-bar-list-item {
+    text-decoration: none;
+    color: #fff; /* Change this to your desired link color */
+    font-weight: bold;
+  }
+  
+  .nav-bar-list-item:hover {
+    text-decoration: underline; /* Add an underline on hover */
+  }
+  
