@@ -1,8 +1,8 @@
 import React from "react";
-import PostArtefact from "../Hooks/postArtefact";
 import '../Styles/ManageArtefact.css';
+import ManagingArtefact from "../Hooks/ManagingArtefact";
 const ManageArtefact = () => {
-    const { artefact, handleArtefact, handleInput, errorMessage } = PostArtefact();
+    const { artefact, handleArtefact, handleInput, errorMessage } = ManagingArtefact();
     return (
         <div className="manage-artefact-container">
             <h2>Add Artefact</h2>

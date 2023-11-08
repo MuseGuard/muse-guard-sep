@@ -17,7 +17,7 @@ const SensorData = () => {
                 <div>
                     {sensorData ? (
                         <div>
-                            <p>Sensor Value: {sensorData.value}</p>
+                            <p>Sensor Value: {sensorData.data.age}</p>
                             {/* Replace 'value' with the actual property name you have in your data */}
                         </div>
                     ) : (

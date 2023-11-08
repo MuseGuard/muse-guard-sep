@@ -4,7 +4,7 @@ import axios from "axios";
 const useSensorData = () => {
   const [sensorData, setSensorData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const url = "http://localhost:8080/api/temps"; // Replace with your API endpoint URL
+  const url = "http://localhost:3000/api/getAll"; // Replace with your API endpoint URL
 
   const fetchData = () => {
     setIsLoading(true);
@@ -12,7 +12,7 @@ const useSensorData = () => {
     axios
       .get(url)
       .then((response) => {
-        console.log(response.data);
+        console.log(response.data[0].age);
         setSensorData(response.data);
         setIsLoading(false);
       })
