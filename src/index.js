@@ -8,6 +8,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Info from './Pages/Info';
 import ManageArtefact from './Pages/ManageArtefact';
+import Artefact from './Pages/Artefact';
 
 const router = createHashRouter([
   {
@@ -28,7 +29,7 @@ const router = createHashRouter([
       },
       {
         path: "/manage",
-        element: <ManageArtefact/>,
+        element: <Artefact/>,
       },
     ],
   },
