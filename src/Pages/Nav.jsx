@@ -1,11 +1,13 @@
 import React from 'react';
-import {Link}  from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import muselogo from '../Assets/muselogo.png';
 import '../Styles/Nav.css';
 
 const Nav = () => {
   return (
     <nav className="nav-bar">
       <div className="nav-bar-container">
+        <img className="nav-bar-logo" src={muselogo} alt="logo" />
         <ul className="nav-bar-list">
           <li>
             <Link to="/" className="nav-bar-list-item">Home</Link>
