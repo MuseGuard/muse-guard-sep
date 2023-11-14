@@ -15,7 +15,7 @@ const ManagingArtefact = () => {
     const { name, value } = e.target;
     setArtefact({ ...artefact, [name]: value });
   };
-
+  
   const handleArtefact = () => {
     axios
       .post("http://localhost:3000/api/post", artefact)
