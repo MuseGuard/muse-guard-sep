@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ManagingArtefact from "../Hooks/ManagingArtefact";
+import add from '../Assets/add.gif';
 import '../Styles/ManageArtefact.css';
 
 const Artefact = () => {
@@ -27,8 +28,7 @@ const Artefact = () => {
     return (
         <div className="manage-artefact-container">
         <h2>Artefact Management</h2>
-        <button className="add-button" onClick={openPopup}>Add Artefact</button>
-
+        <img className="add-artefact-logo" src={add} alt="logo" onClick={openPopup}/>
         {isPopupOpen && (
             <div className="popup">
                 <div className="popup-content">
