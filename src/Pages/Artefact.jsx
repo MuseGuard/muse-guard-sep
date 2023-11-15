@@ -73,12 +73,12 @@ const Artefact = () => {
         ) : (
             <ul>
                 {artefactData.map((artefact) => (
-                    <li key={artefact.id}>
+                    <li key={artefact.name}>
                         {/* Display the artefact name */}
                         <span>{artefact.name}</span>
 
                         {/* Add a button to delete the artefact */}
-                        <button onClick={() => handleDeleteArtefact(artefact.id)}>Delete</button>
+                        <button onClick={() => handleDeleteArtefact(artefact.name)}>Delete</button>
                     </li>
                 ))}
             </ul>
