@@ -11,7 +11,7 @@ const Artefact = () => {
         artefact,
         artefactData,
         isLoading,
-        fetchArtefactData,
+       // fetchArtefactData,
         handleDeleteArtefact,
     } = ManagingArtefact();
 
