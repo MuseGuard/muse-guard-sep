@@ -18,7 +18,7 @@ const ManagingArtefact = () => {
   
   const handleArtefact = () => {
     axios
-      .post("http://localhost:3000/api/post", artefact)
+      .post("http://localhost:3000/api/postartefact", artefact)
       .then((response) => {
         console.log("Artefact Created Successfully", response.data);
       })
@@ -30,7 +30,7 @@ const ManagingArtefact = () => {
 
   const [artefactData, setArtefactData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const url = "http://localhost:3000/api/getAll"; // Replace with your API endpoint URL
+  const url = "http://localhost:3000/api/getArtefacts"; // Replace with your API endpoint URL
 
   const fetchArtefactData = () => {
     setIsLoading(true);
@@ -52,10 +52,11 @@ const ManagingArtefact = () => {
     fetchArtefactData();
   }, []); // Fetch data when the component is mounted
 
-    const handleDeleteArtefact = () => {
-        axios
-      .delete(`http://localhost:3000/api/delete/${artefact.name}`)
-      .then(() => {
+  const handleDeleteArtefact = (name) => {
+    axios
+      .delete(`http://localhost:3000/api/deleteart/${name}`)
+      .then((response) => {
+        console.log(response.data);
         console.log("Artefact Deleted Successfully");
         setArtefact({
           name: "",
@@ -68,7 +69,7 @@ const ManagingArtefact = () => {
         console.error("Error Deleting Artefact", error);
       });
   };
-
+  
   return {
     handleInput,
     handleArtefact,

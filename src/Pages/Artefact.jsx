@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ManagingArtefact from "../Hooks/ManagingArtefact";
+import add from '../Assets/add.gif';
 import '../Styles/ManageArtefact.css';
 
 const Artefact = () => {
@@ -10,7 +11,7 @@ const Artefact = () => {
         artefact,
         artefactData,
         isLoading,
-        fetchArtefactData,
+       // fetchArtefactData,
         handleDeleteArtefact,
     } = ManagingArtefact();
 
@@ -27,8 +28,7 @@ const Artefact = () => {
     return (
         <div className="manage-artefact-container">
         <h2>Artefact Management</h2>
-        <button className="add-button" onClick={openPopup}>Add Artefact</button>
-
+        <img className="add-artefact-logo" src={add} alt="logo" onClick={openPopup}/>
         {isPopupOpen && (
             <div className="popup">
                 <div className="popup-content">
@@ -73,12 +73,12 @@ const Artefact = () => {
         ) : (
             <ul>
                 {artefactData.map((artefact) => (
-                    <li key={artefact.id}>
+                    <li key={artefact.name}>
                         {/* Display the artefact name */}
                         <span>{artefact.name}</span>
 
                         {/* Add a button to delete the artefact */}
-                        <button onClick={() => handleDeleteArtefact(artefact.id)}>Delete</button>
+                        <button onClick={() => handleDeleteArtefact(artefact.name)}>Delete</button>
                     </li>
                 ))}
             </ul>
