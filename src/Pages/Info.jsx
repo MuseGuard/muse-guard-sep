@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import useSensorData from "../Hooks/useSensorData";
+import { Button, Typography, CircularProgress, Paper } from "@mui/material";
 import { Line } from "react-chartjs-2";
+import useSensorData from "../Hooks/useSensorData";
 import "../Styles/Info.css";
 
 const Info = () => {
@@ -10,7 +11,6 @@ const Info = () => {
     fetchData,
     fetchLastNValue,
     chartData,
-    //LineChart,
   } = useSensorData();
 
   const [showLastNValues, setShowLastNValues] = useState(false);
@@ -26,28 +26,38 @@ const Info = () => {
   };
 
   return (
-    <div className="info-container">
-      <h2>Sensor Data</h2>
+    <Paper elevation={3} className="info-container">
+      <Typography variant="h4" gutterBottom>
+        Sensor Data
+      </Typography>
       {isLoading ? (
-        <p>Loading sensor data...</p>
+        <CircularProgress />
       ) : (
         <div>
           {sensorData && sensorData.length > 0 ? (
             <div>
-              <p>Sensor Value: {sensorData[0].temperature}</p>
+              <Typography variant="body1" gutterBottom>
+                Sensor Value: {sensorData[0].temperature}
+              </Typography>
             </div>
           ) : (
-            <p>No data available.</p>
+            <Typography variant="body1">No data available.</Typography>
           )}
 
-          <button onClick={handleRefreshClick}>Refresh</button>
-          <button onClick={handleLastNValuesClick}>Show Last 10 Values</button>
+          <Button variant="contained" onClick={handleRefreshClick}>
+            Refresh
+          </Button>
+          <Button variant="contained" onClick={handleLastNValuesClick}>
+            Show Last 10 Values
+          </Button>
 
           {showLastNValues && sensorData && sensorData.length > 0 && (
             <div className="chart-container">
               {/* Separate div for Sensor Value */}
               <div className="sensor-value-container">
-                <p>Sensor Value: {sensorData[0].temperature}</p>
+                <Typography variant="body1">
+                  Sensor Value: {sensorData[0].temperature}
+                </Typography>
               </div>
 
               {/* Separate div for the Line Chart */}
@@ -59,20 +69,20 @@ const Info = () => {
                     maintainAspectRatio: false,
                     scales: {
                       x: {
-                        type: 'time',
+                        type: "time",
                         time: {
-                          unit: 'minute',
-                          tooltipFormat: 'YYYY-MM-DD HH:mm:ss',
+                          unit: "minute",
+                          tooltipFormat: "YYYY-MM-DD HH:mm:ss",
                         },
                         title: {
                           display: true,
-                          text: 'Timestamp',
+                          text: "Timestamp",
                         },
                       },
                       y: {
                         title: {
                           display: true,
-                          text: 'Temperature',
+                          text: "Temperature",
                         },
                       },
                     },
@@ -83,7 +93,7 @@ const Info = () => {
           )}
         </div>
       )}
-    </div>
+    </Paper>
   );
 };
 
