@@ -3,6 +3,8 @@ import axios from "axios";
 import { Line } from "react-chartjs-2";
 import "chartjs-adapter-date-fns";
 import { Chart, registerables } from 'chart.js';
+
+
 Chart.register(...registerables)
 
 const useSensorData = () => {
@@ -17,9 +19,9 @@ const useSensorData = () => {
       .get(url)
       .then((response) => {
         console.log(response);
-        //setSensorData(response.data);
+        setSensorData(response.data);
         
-        //setIsLoading(false);
+        setIsLoading(false);
       })
       .catch((error) => {
         setIsLoading(false);
@@ -29,7 +31,7 @@ const useSensorData = () => {
 
   const fetchLastNValue = (n) => {
     setIsLoading(true);
-    axios.get(`${url}?limit=${n}`)
+    axios.get(url)
     .then((response) => {
       setSensorData(response.data);
       setIsLoading(false);
@@ -41,28 +43,39 @@ const useSensorData = () => {
   };
 
   useEffect(() => {
+    // Fetch data when the component is mounted
     fetchData();
-  }, []); // Fetch data when the component is mounted
 
-  // const chartData = {
-  //   labels: sensorData ? sensorData.map((data) => data.timestamp) : [],
-  //   datasets: [
-  //     {
-  //       label: "Sensor Data",
-  //       data: sensorData ? sensorData.map((data) => data.value) : [],
-  //       fill: false,
-  //       borderColor: "rgb(75, 192, 192)",
-  //       tension: 0.1,
-  //     },
-  //   ],
-  // };
+    // Set up an interval to fetch data every 5 seconds
+    const intervalId = setInterval(() => {
+      fetchData();
+    }, 5000);
+
+    // Clean up the interval when the component is unmounted
+    return () => clearInterval(intervalId);
+  }, []); 
+// Fetch data when the component is mounted
+
+  const chartData = {
+    labels: sensorData ? sensorData.map((data) => data.time) : [],
+    datasets: [
+      {
+        label: "Sensor Data",
+        data: sensorData ? sensorData.map((data) => data.temperature) : [],
+        fill: false,
+        borderColor: "rgb(75, 192, 192)",
+        tension: 0.1,
+      },
+    ],
+  };
 
   return {
     sensorData,
     isLoading,
     fetchData,
     fetchLastNValue,
-    // LineChart:<Line data={chartData}/>
+    chartData,
+    LineChart:<Line data={chartData}/>
   };
 };
 
