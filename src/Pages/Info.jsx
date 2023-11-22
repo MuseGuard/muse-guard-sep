@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Typography, CircularProgress, Paper } from "@mui/material";
 import { Line } from "react-chartjs-2";
-import useSensorData from "../Hooks/useSensorData";
+import useSensorData from "../Hooks/useTempData";
 import "../Styles/Info.css";
 
 const Info = () => {
