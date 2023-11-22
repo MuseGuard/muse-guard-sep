@@ -9,10 +9,10 @@ Chart.register(...registerables);
 const useHumidityData = () => {
   const [humiditySensorData, sethumiditySensorData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const url = "http://localhost:3000/temp/getTemperatures"; // Replace with your API endpoint URL
+  const url = "http://localhost:3000/humid/getHumidities"; // Replace with your API endpoint URL
 
   const humidityData = () => {
-    setIsLoading(true);
+    //setIsLoading(true);
 
     axios
       .get(url)
@@ -62,7 +62,7 @@ const useHumidityData = () => {
       {
         label: "Sensor Data",
         data: humiditySensorData
-          ? humiditySensorData.map((data) => data.temperature)
+          ? humiditySensorData.map((data) => data.measurment)
           : [],
         fill: false,
         borderColor: "rgb(75, 192, 192)",

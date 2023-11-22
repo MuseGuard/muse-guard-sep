@@ -1,41 +1,59 @@
-/* Info.css */
-
+/* Styles for Info component */
 .info-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f8f8f8;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px;
+  max-width: 100%;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info-container h4 {
+  margin-bottom: 20px;
+}
+
+/* Styles for SensorSection component */
+.sensor-section {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.sensor-section h6 {
+  margin-bottom: 10px;
+}
+
+.sensor-info {
+  margin-bottom: 10px;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+}
+
+.refresh-button,
+.lastNValues-button {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.refresh-button:hover,
+.lastNValues-button:hover {
+  background-color: #45a049;
+}
+
+.chart-container {
+  margin-top: 20px;
+  width: 100%;
+}
+
+/* Media query for responsiveness */
+@media (min-width: 600px) {
+  .info-container {
+    max-width: 800px;
   }
-  
-  .chart-container {
-    margin-top: 20px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #fff;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Optional: Add more styles for buttons, text, etc. */
-  button {
-    margin-right: 10px;
-    padding: 8px 16px;
-    font-size: 14px;
-    cursor: pointer;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  p {
-    font-size: 16px;
-  }
-  
+}

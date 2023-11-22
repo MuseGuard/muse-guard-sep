@@ -9,10 +9,10 @@ Chart.register(...registerables);
 const useLightData = () => {
   const [lightSesnorData, setlightSesnorData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const url = "http://localhost:3000/temp/getTemperatures"; // Replace with your API endpoint URL
+  const url = "http://localhost:3000/light/getLightLevels"; // Replace with your API endpoint URL
 
   const lightData = () => {
-    setIsLoading(true);
+    //setIsLoading(true);
 
     axios
       .get(url)
@@ -62,7 +62,7 @@ const useLightData = () => {
       {
         label: "Sensor Data",
         data: lightSesnorData
-          ? lightSesnorData.map((data) => data.temperature)
+          ? lightSesnorData.map((data) => data.lightLevel)
           : [],
         fill: false,
         borderColor: "rgb(75, 192, 192)",

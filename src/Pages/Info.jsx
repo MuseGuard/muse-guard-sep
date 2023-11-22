@@ -1,34 +1,17 @@
-import React, { useState } from "react";
+
+import React from "react";
 import { Button, Typography, CircularProgress, Paper } from "@mui/material";
 import { Line } from "react-chartjs-2";
-import useSensorData from "../Hooks/useTempData";
+import useTempData from "../Hooks/useTempData";
+import useHumidityData from "../Hooks/useHumidityData";
+import useLightData from "../Hooks/useLightData";
 import "../Styles/Info.css";
 
-const Info = () => {
-  const {
-    sensorData,
-    isLoading,
-    fetchData,
-    fetchLastNValue,
-    chartData,
-  } = useSensorData();
-
-  const [showLastNValues, setShowLastNValues] = useState(false);
-
-  const handleRefreshClick = () => {
-    fetchData();
-    setShowLastNValues(false);
-  };
-
-  const handleLastNValuesClick = () => {
-    fetchLastNValue(10);
-    setShowLastNValues(true);
-  };
-
+const SensorSection = ({ title, isLoading, sensorData, chartData, onRefreshClick, onLastNValuesClick }) => {
   return (
-    <Paper elevation={3} className="info-container">
-      <Typography variant="h4" gutterBottom>
-        Sensor Data
+    <div className="sensor-section">
+      <Typography variant="h6" gutterBottom>
+        {title}
       </Typography>
       {isLoading ? (
         <CircularProgress />
@@ -36,63 +19,89 @@ const Info = () => {
         <div>
           {sensorData && sensorData.length > 0 ? (
             <div>
-              <Typography variant="body1" gutterBottom>
-                Sensor Value: {sensorData[0].temperature}
+              <Typography variant="body1" className="sensor-info">
+                Sensor Value: {sensorData[0].temperature || sensorData[0].measurment || sensorData[0].lightLevel}
               </Typography>
+              <div className="button-container">
+                <Button variant="contained" className="refresh-button" onClick={onRefreshClick}>
+                  Refresh
+                </Button>
+                <Button variant="contained" className="lastNValues-button" onClick={onLastNValuesClick}>
+                  Show Last 10 Values
+                </Button>
+              </div>
             </div>
           ) : (
             <Typography variant="body1">No data available.</Typography>
           )}
-
-          <Button variant="contained" onClick={handleRefreshClick}>
-            Refresh
-          </Button>
-          <Button variant="contained" onClick={handleLastNValuesClick}>
-            Show Last 10 Values
-          </Button>
-
-          {showLastNValues && sensorData && sensorData.length > 0 && (
+          {sensorData && sensorData.length > 0 && (
             <div className="chart-container">
-              {/* Separate div for Sensor Value */}
-              <div className="sensor-value-container">
-                <Typography variant="body1">
-                  Sensor Value: {sensorData[0].temperature}
-                </Typography>
-              </div>
-
-              {/* Separate div for the Line Chart */}
-              <div className="line-chart-container">
-                <Line
-                  data={chartData}
-                  options={{
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                      x: {
-                        type: "time",
-                        time: {
-                          unit: "minute",
-                          tooltipFormat: "YYYY-MM-DD HH:mm:ss",
-                        },
-                        title: {
-                          display: true,
-                          text: "Timestamp",
-                        },
-                      },
-                      y: {
-                        title: {
-                          display: true,
-                          text: "Temperature",
-                        },
-                      },
-                    },
-                  }}
-                />
-              </div>
+              <Line data={chartData} />
             </div>
           )}
         </div>
       )}
+    </div>
+  );
+};
+
+const Info = () => {
+  const {
+    tempSensorData,
+    isLoading: isLoadingTemp,
+    tempData,
+    fetchTempLastNValues,
+    tempChart,
+  } = useTempData();
+
+  const {
+    humiditySensorData,
+    isLoading: isLoadingHumidity,
+    humidityData,
+    fetchHumidityLastNValues,
+    humidityChart,
+  } = useHumidityData();
+
+  const {
+    lightSesnorData,
+    isLoading: isLoadingLight,
+    lightData,
+    fetchLightLastNValues,
+    lightChart,
+  } = useLightData();
+
+  return (
+    <Paper elevation={3} className="info-container">
+      <Typography variant="h4" gutterBottom>
+        Sensor Data
+      </Typography>
+
+      <SensorSection
+        title="Temperature Sensor"
+        isLoading={isLoadingTemp}
+        sensorData={tempSensorData}
+        chartData={tempChart}
+        onRefreshClick={tempData}
+        onLastNValuesClick={() => fetchTempLastNValues(10)}
+      />
+
+      <SensorSection
+        title="Humidity Sensor"
+        isLoading={isLoadingHumidity}
+        sensorData={humiditySensorData}
+        chartData={humidityChart}
+        onRefreshClick={humidityData}
+        onLastNValuesClick={() => fetchHumidityLastNValues(10)}
+      />
+
+      <SensorSection
+        title="Light Sensor"
+        isLoading={isLoadingLight}
+        sensorData={lightSesnorData}
+        chartData={lightChart}
+        onRefreshClick={lightData}
+        onLastNValuesClick={() => fetchLightLastNValues(10)}
+      />
     </Paper>
   );
 };

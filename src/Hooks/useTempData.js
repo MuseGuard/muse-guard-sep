@@ -12,7 +12,7 @@ const useTempData = () => {
   const url = "http://localhost:3000/temp/getTemperatures"; // Replace with your API endpoint URL
 
   const tempData = () => {
-    setIsLoading(true);
+    //setIsLoading(true);
 
     axios
       .get(url)
