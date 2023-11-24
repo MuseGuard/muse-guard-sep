@@ -3,6 +3,7 @@ import axios from "axios";
 import { Line } from "react-chartjs-2";
 import "chartjs-adapter-date-fns";
 import { Chart, registerables } from "chart.js";
+import { format } from 'date-fns';
 
 Chart.register(...registerables);
 
@@ -57,7 +58,7 @@ const useLightData = () => {
   // Fetch data when the component is mounted
 
   const lightChart = {
-    labels: lightSesnorData ? lightSesnorData.map((data) => data.time) : [],
+    labels: lightSesnorData ? lightSesnorData.map((data) => format(new Date(data.time), 'HH:mm:ss')) : [],
     datasets: [
       {
         label: "Sensor Data",

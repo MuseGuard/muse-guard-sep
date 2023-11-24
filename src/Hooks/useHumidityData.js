@@ -3,6 +3,7 @@ import axios from "axios";
 import { Line } from "react-chartjs-2";
 import "chartjs-adapter-date-fns";
 import { Chart, registerables } from "chart.js";
+import { format } from 'date-fns';
 
 Chart.register(...registerables);
 
@@ -12,14 +13,11 @@ const useHumidityData = () => {
   const url = "http://localhost:3000/humid/getHumidities"; // Replace with your API endpoint URL
 
   const humidityData = () => {
-    //setIsLoading(true);
-
     axios
       .get(url)
       .then((response) => {
         console.log(response);
         sethumiditySensorData(response.data);
-
         setIsLoading(false);
       })
       .catch((error) => {
@@ -28,7 +26,7 @@ const useHumidityData = () => {
       });
   };
 
-  const fetchHumidityLastNValues = (n) => {
+  const fetchHumidityLastNValues = () => {
     setIsLoading(true);
     axios
       .get(url)
@@ -54,16 +52,13 @@ const useHumidityData = () => {
     // Clean up the interval when the component is unmounted
     return () => clearInterval(intervalId);
   }, []);
-  // Fetch data when the component is mounted
 
   const humidityChart = {
-    labels: humiditySensorData ? humiditySensorData.map((data) => data.time) : [],
+    labels: humiditySensorData ? humiditySensorData.map((data) => format(new Date(data.time), 'HH:mm:ss')) : [],
     datasets: [
       {
         label: "Sensor Data",
-        data: humiditySensorData
-          ? humiditySensorData.map((data) => data.measurment)
-          : [],
+        data: humiditySensorData ? humiditySensorData.map((data) => data.measurment) : [],
         fill: false,
         borderColor: "rgb(75, 192, 192)",
         tension: 0.1,

@@ -3,6 +3,7 @@ import axios from "axios";
 import { Line } from "react-chartjs-2";
 import "chartjs-adapter-date-fns";
 import { Chart, registerables } from "chart.js";
+import { format } from 'date-fns';
 
 Chart.register(...registerables);
 
@@ -12,14 +13,11 @@ const useTempData = () => {
   const url = "http://localhost:3000/temp/getTemperatures"; // Replace with your API endpoint URL
 
   const tempData = () => {
-    //setIsLoading(true);
-
     axios
       .get(url)
       .then((response) => {
         console.log(response);
         settempSensorData(response.data);
-
         setIsLoading(false);
       })
       .catch((error) => {
@@ -28,7 +26,7 @@ const useTempData = () => {
       });
   };
 
-  const fetchTempLastNValues = (n) => {
+  const fetchTempLastNValues = () => {
     setIsLoading(true);
     axios
       .get(url)
@@ -54,16 +52,13 @@ const useTempData = () => {
     // Clean up the interval when the component is unmounted
     return () => clearInterval(intervalId);
   }, []);
-  // Fetch data when the component is mounted
 
   const tempChart = {
-    labels: tempSensorData ? tempSensorData.map((data) => data.time) : [],
+    labels: tempSensorData ? tempSensorData.map((data) => format(new Date(data.time), 'HH:mm:ss')) : [],
     datasets: [
       {
         label: "Sensor Data",
-        data: tempSensorData
-          ? tempSensorData.map((data) => data.temperature)
-          : [],
+        data: tempSensorData ? tempSensorData.map((data) => data.temperature) : [],
         fill: false,
         borderColor: "rgb(75, 192, 192)",
         tension: 0.1,
