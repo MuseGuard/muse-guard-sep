@@ -2,8 +2,9 @@
 import React, { useState } from "react";
 import ManagingArtefact from "../Hooks/ManagingArtefact";
 import add from '../Assets/add.gif';
-import { Button, TextField, Modal, Typography } from "@mui/material";
+import { Button, TextField, Modal, Typography , ToggleButton , ToggleButtonGroup} from "@mui/material";
 import '../Styles/ManageArtefact.css';
+import ToggleSensorState from "../Hooks/toggleSensorState";
 
 const Artefact = () => {
   const {
@@ -15,6 +16,11 @@ const Artefact = () => {
     isLoading,
     handleDeleteArtefact,
   } = ManagingArtefact();
+
+  const {
+    toggleState,
+    handleToggleSensors
+  } = ToggleSensorState();
 
   const [isPopupOpen, setPopupOpen] = useState(false);
 
@@ -75,6 +81,20 @@ const Artefact = () => {
           </div>
         </div>
       </Modal>
+
+      <ToggleButtonGroup
+        value={toggleState}
+        exclusive
+        onChange={handleToggleSensors}
+        aria-label="Toggle Sensors"
+      >
+        <ToggleButton value={true} aria-label="Turn On Sensors">
+          Turn On Sensors
+        </ToggleButton>
+        <ToggleButton value={false} aria-label="Turn Off Sensors">
+          Turn Off Sensors
+        </ToggleButton>
+      </ToggleButtonGroup>
 
       <Typography variant="h2">Artefact List</Typography>
       {isLoading ? (
