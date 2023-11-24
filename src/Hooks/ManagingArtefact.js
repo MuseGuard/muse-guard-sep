@@ -7,6 +7,12 @@ const ManagingArtefact = () => {
     name: "",
     description: "",
     imageUrl: "",
+    minTemp: "",
+    maxTemp: "",
+    minLight: "",
+    maxLight: "",
+    minHumidity: "",
+    maxHumidity: "",
   });
 
   const [errorMessage, setErrorMessage] = useState(null);

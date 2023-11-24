@@ -72,6 +72,60 @@ const Artefact = () => {
                 onChange={handleInput}
               />
             </div>
+            <div className="input-container">
+              <label>Minimum Temperature:</label>
+              <TextField
+                type="text"
+                name="minTemperature"
+                value={artefact.minTemperature}
+                onChange={handleInput}
+              />
+            </div>
+            <div className="input-container">
+              <label>Maximum Temperature:</label>
+              <TextField
+                type="text"
+                name="maxTemperature"
+                value={artefact.maxTemperature}
+                onChange={handleInput}
+              />
+            </div>
+            <div className="input-container">
+              <label>Minimum Humidity:</label>
+              <TextField
+                type="text"
+                name="minHumidity"
+                value={artefact.minHumidity}
+                onChange={handleInput}
+              />
+            </div>
+            <div className="input-container">
+              <label>Maximum Humidity:</label>
+              <TextField
+                type="text"
+                name="maxHumidity"
+                value={artefact.maxHumidity}
+                onChange={handleInput}
+              />
+            </div>
+            <div className="input-container">
+              <label>Minimum Light Level:</label>
+              <TextField
+                type="text"
+                name="minLightLevel"
+                value={artefact.minLight}
+                onChange={handleInput}
+              />
+            </div>
+            <div className="input-container">
+              <label>Maximum Light Level:</label>
+              <TextField
+                type="text"
+                name="maxLightLevel"
+                value={artefact.maxLight}
+                onChange={handleInput}
+              />
+            </div>  
             <Button className="add-button" onClick={handleArtefact} variant="contained">
               Add
             </Button>
