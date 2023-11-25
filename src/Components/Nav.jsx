@@ -11,25 +11,25 @@ const NavBar = () => {
         <div className="ml-auto space-x-4">
           <Link
             to="/"
-            className="text-white px-3 py-2 border border-gray-200 rounded transition duration-300 ease-in-out hover:bg-gray-100 hover:rounded-full"
+            className="text-white px-3 py-2 border border-gray-500 rounded transition duration-300 ease-in-out hover:bg-gray-100 hover:rounded-full"
           >
             Home
           </Link>
           <Link
             to="/about"
-            className="text-white px-3 py-2 border border-gray-200 rounded transition duration-300 ease-in-out hover:bg-gray-100 hover:rounded-full"
+            className="text-white px-3 py-2 border border-gray-500 rounded transition duration-300 ease-in-out hover:bg-gray-100 hover:rounded-full"
           >
             About
           </Link>
           <Link
             to="/manage"
-            className="text-white px-3 py-2 border border-gray-200 rounded transition duration-300 ease-in-out hover:bg-gray-100 hover:rounded-full"
+            className="text-white px-3 py-2 border border-gray-500 rounded transition duration-300 ease-in-out hover:bg-gray-100 hover:rounded-full"
           >
             ArteFacts
           </Link>
           <Link
             to="/data"
-            className="text-white px-3 py-2 border border-gray-200 rounded transition duration-300 ease-in-out hover:bg-gray-100 hover:rounded-full"
+            className="text-white px-3 py-2 border border-gray-500 rounded transition duration-300 ease-in-out hover:bg-gray-100 hover:rounded-full"
           >
             Info
           </Link>

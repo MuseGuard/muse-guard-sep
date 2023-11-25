@@ -9,6 +9,9 @@ import reportWebVitals from './reportWebVitals';
 import Info from './Pages/Info';
 //import ManageArtefact from './Pages/ManageArtefact';
 import Artefact from './Pages/Artefact';
+// index.js or index.jsx
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 const router = createHashRouter([
   {
