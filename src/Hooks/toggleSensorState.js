@@ -7,7 +7,7 @@ const ToggleSensorState = () => {
   const handleToggleSensors = async () => {
     try {
       setToggleState(!toggleState);
-      await axios.patch("URL", {toggleState});
+      await axios.patch("http://localhost:3000/motion/updateMotion", {toggleState});
     } catch (error) {
       console.error('Error toggling sensors:', error);
     }

@@ -1,38 +1,42 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { AppBar, Toolbar, Typography, Button, IconButton } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
 import muselogo from '../Assets/muselogo.png';
-import '../Styles/Nav.css';
 
-const Nav = () => {
+const NavBar = () => {
   return (
-    <AppBar position="static" className="nav-bar">
-      <Toolbar>
-        <IconButton size="large" edge="start" color="inherit" aria-label="menu">
-          <MenuIcon />
-        </IconButton>
-        <img className="nav-bar-logo" src={muselogo} alt="logo" />
-        <Typography variant="h6" className="nav-bar-title">
-          Muse Guard
-        </Typography>
-        <div className="nav-bar-list">
-          <Button component={Link} to="/" color="inherit" className="nav-bar-list-item">
+    <nav className="bg-slate-700 p-4">
+      <div className="flex items-center">
+        <img className="h-8 ml-2" src={muselogo} alt="logo" />
+        <span className="text-white text-2xl font-bold ml-2">Muse Guard</span>
+        <div className="ml-auto space-x-4">
+          <Link
+            to="/"
+            className="text-white px-3 py-2 border border-gray-200 rounded transition duration-300 ease-in-out hover:bg-gray-100 hover:rounded-full"
+          >
             Home
-          </Button>
-          <Button component={Link} to="/about" color="inherit" className="nav-bar-list-item">
+          </Link>
+          <Link
+            to="/about"
+            className="text-white px-3 py-2 border border-gray-200 rounded transition duration-300 ease-in-out hover:bg-gray-100 hover:rounded-full"
+          >
             About
-          </Button>
-          <Button component={Link} to="/manage" color="inherit" className="nav-bar-list-item">
+          </Link>
+          <Link
+            to="/manage"
+            className="text-white px-3 py-2 border border-gray-200 rounded transition duration-300 ease-in-out hover:bg-gray-100 hover:rounded-full"
+          >
             ArteFacts
-          </Button>
-          <Button component={Link} to="/data" color="inherit" className="nav-bar-list-item">
+          </Link>
+          <Link
+            to="/data"
+            className="text-white px-3 py-2 border border-gray-200 rounded transition duration-300 ease-in-out hover:bg-gray-100 hover:rounded-full"
+          >
             Info
-          </Button>
+          </Link>
         </div>
-      </Toolbar>
-    </AppBar>
+      </div>
+    </nav>
   );
 };
 
-export default Nav;
+export default NavBar;
