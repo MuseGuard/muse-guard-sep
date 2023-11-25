@@ -33,6 +33,7 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: auto;
 }
 
 .popup-content {
