@@ -31,7 +31,7 @@ const About = () => {
             {/* Team member with social icons */}
             <motion.div
               whileHover={{ scale: 1.1 }}
-              className="m-4 p-4 border rounded shadow-md transition-transform duration-300 ease-in-out bg-gray-800"
+              className="m-4 p-4 border rounded shadow-md transition-transdorm duration-300 ease-in-out bg-gray-800"
             >
               <h3 className="text-xl font-bold mb-2">Vatsal Jariwala</h3>
               <p className="text-gray-300">Founder & CEO</p>

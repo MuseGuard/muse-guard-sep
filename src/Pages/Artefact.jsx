@@ -75,7 +75,7 @@ const Artefact = () => {
             <div className="input-container">
               <label>Minimum Temperature:</label>
               <TextField
-                type="text"
+                type="number"
                 name="minTemperature"
                 value={artefact.minTemperature}
                 onChange={handleInput}
@@ -84,7 +84,7 @@ const Artefact = () => {
             <div className="input-container">
               <label>Maximum Temperature:</label>
               <TextField
-                type="text"
+                type="number"
                 name="maxTemperature"
                 value={artefact.maxTemperature}
                 onChange={handleInput}
@@ -93,7 +93,7 @@ const Artefact = () => {
             <div className="input-container">
               <label>Minimum Humidity:</label>
               <TextField
-                type="text"
+                type="number"
                 name="minHumidity"
                 value={artefact.minHumidity}
                 onChange={handleInput}
@@ -102,26 +102,17 @@ const Artefact = () => {
             <div className="input-container">
               <label>Maximum Humidity:</label>
               <TextField
-                type="text"
+                type="number"
                 name="maxHumidity"
                 value={artefact.maxHumidity}
                 onChange={handleInput}
               />
             </div>
             <div className="input-container">
-              <label>Minimum Light Level:</label>
-              <TextField
-                type="text"
-                name="minLightLevel"
-                value={artefact.minLight}
-                onChange={handleInput}
-              />
-            </div>
-            <div className="input-container">
               <label>Maximum Light Level:</label>
               <TextField
-                type="text"
-                name="maxLightLevel"
+                type="number"
+                name="maxLight"
                 value={artefact.maxLight}
                 onChange={handleInput}
               />
