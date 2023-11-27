@@ -1,17 +1,57 @@
+// import React from "react";
+
+// const ArtefactCard = ({ artefact }) => {
+//     return(
+    
+//             <div className="bg-white/40 rounded-lg overflow-hidden shadow-md px-3 py-1 animate-fade-right ">
+//                 <img className="w-full h-56 object-fill object-center" src={artefact.imageUrl} alt="avatar" />
+//                 <div className="px-1 py-2">
+//                 <div className="font-bold text-xl mb-2">{artefact.name}</div>
+//                 <p className="text-gray-700 text-base">{artefact.description}</p>
+//                 </div>
+//             </div>
+        
+//     );
+// };
+
+// export default ArtefactCard;
+
 import React from "react";
+import { useArtefactContext } from "./ArtefactContext";
 
 const ArtefactCard = ({ artefact }) => {
-    return(
-        <div className="max-w-xs mx-auto my-4 px-4 py-6 ">
-            <div className="bg-white rounded-lg overflow-hidden shadow-md px-3 py-2 ">
-                <img className="w-full h-56 object-cover object-center" src={artefact.imageUrl} alt="avatar" />
-                <div className="px-6 py-4">
-                <div className="font-bold text-xl mb-2">{artefact.name}</div>
-                <p className="text-gray-700 text-base">{artefact.description}</p>
-                </div>
-            </div>
-        </div>
-    );
+  const { selectedArtefact, setSelectedArtefact } = useArtefactContext();
+
+  const handleClick = () => {
+    console.log("Clicked on the card");
+    console.log("Selected Artefact before:", selectedArtefact);
+  
+    setSelectedArtefact((prevArtefact) => {
+      console.log("Setting selectedArtefact to:", prevArtefact === artefact ? null : artefact);
+      return prevArtefact === artefact ? null : artefact;
+    });
+  };
+  
+  console.log("Rendered ArtefactCard with selectedArtefact:", selectedArtefact);
+  
+  return (
+    <div
+      className={`bg-white/40 rounded-lg overflow-hidden shadow-md px-3 py-1 cursor-pointer animate-fade-down ${
+        selectedArtefact === artefact ? "selected" : ""
+      }`}
+      onClick={handleClick}
+    >
+      <img
+        className="w-full h-56 object-fill object-center"
+        src={artefact.imageUrl}
+        alt="avatar"
+      />
+      <div className="px-1 py-2">
+        <div className="font-bold text-xl mb-2">{artefact.name}</div>
+        <p className="text-gray-700 text-base">{artefact.description}</p>
+      </div>
+    </div>
+  );
 };
 
 export default ArtefactCard;
