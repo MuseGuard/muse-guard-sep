@@ -7,7 +7,7 @@ const NavBar = () => {
     <nav className="bg-slate-700 p-4">
       <div className="flex items-center">
         <img className="h-8 ml-2" src={muselogo} alt="logo" />
-        <span className="text-white text-2xl font-bold ml-2">Muse Guard</span>
+        <span className="text-white text-2xl font-bold ml-2 font-aladin">Muse Guard</span>
         <div className="ml-auto space-x-4">
           <Link
             to="/"

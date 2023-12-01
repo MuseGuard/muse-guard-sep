@@ -1,6 +1,6 @@
 .app-main {
-  font-family: 'Arial', sans-serif;
-  background-image: url('./background.jpg');
+  
+  background-image: url('./marble.jpg');
   background-size: cover;
   background-position: center;
   min-height: 100vh;
@@ -13,4 +13,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@keyframes openingAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-opening {
+  animation: openingAnimation 1s ease-in-out;
 }

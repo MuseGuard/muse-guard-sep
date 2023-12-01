@@ -1,6 +1,4 @@
-
 import React from "react";
-import { Button, Typography, CircularProgress, Paper } from "@mui/material";
 import { Line } from "react-chartjs-2";
 import useTempData from "../Hooks/useTempData";
 import useHumidityData from "../Hooks/useHumidityData";
@@ -10,32 +8,32 @@ import "../Styles/Info.css";
 const SensorSection = ({ title, isLoading, sensorData, chartData, onRefreshClick, onLastNValuesClick }) => {
   return (
     <div className="sensor-section">
-      <Typography variant="h6" gutterBottom>
-        {title}
-      </Typography>
+      <h6 className="text-lg font-semibold mb-2">{title}</h6>
       {isLoading ? (
-        <CircularProgress />
+        <div className="flex justify-center items-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-blue-500"></div>
+        </div>
       ) : (
         <div>
           {sensorData && sensorData.length > 0 ? (
             <div>
-              <Typography variant="body1" className="sensor-info">
+              <p className="text-base sensor-info">
                 Sensor Value: {sensorData[0].temperature || sensorData[0].measurment || sensorData[0].lightLevel}
-              </Typography>
-              <div className="button-container">
-                <Button variant="contained" className="refresh-button" onClick={onRefreshClick}>
+              </p>
+              <div className="flex space-x-4">
+                <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded" onClick={onRefreshClick}>
                   Refresh
-                </Button>
-                <Button variant="contained" className="lastNValues-button" onClick={onLastNValuesClick}>
+                </button>
+                <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded" onClick={onLastNValuesClick}>
                   Show Last 10 Values
-                </Button>
+                </button>
               </div>
             </div>
           ) : (
-            <Typography variant="body1">No data available.</Typography>
+            <p className="text-base">No data available.</p>
           )}
           {sensorData && sensorData.length > 0 && (
-            <div className="chart-container">
+            <div className="chart-container h-[180px]">
               <Line data={chartData} />
             </div>
           )}
@@ -63,7 +61,7 @@ const Info = () => {
   } = useHumidityData();
 
   const {
-    lightSesnorData,
+    lightSesnorData, // Corrected variable name
     isLoading: isLoadingLight,
     lightData,
     fetchLightLastNValues,
@@ -71,38 +69,48 @@ const Info = () => {
   } = useLightData();
 
   return (
-    <Paper elevation={3} className="info-container">
-      <Typography variant="h4" gutterBottom>
-        Sensor Data
-      </Typography>
+    <div className="grid grid-cols-2 gap-2 bg-white/40 mt-5 mb-5 w-screen mr-8 ml-8 shadow-xl rounded-3xl animate-fade-up">
+      {/* Temperature Sensor */}
+      <div className="col-span-1 px-2 ">
+        <SensorSection
+          title="Temperature Sensor"
+          isLoading={isLoadingTemp}
+          sensorData={tempSensorData}
+          chartData={tempChart}
+          onRefreshClick={tempData}
+          onLastNValuesClick={() => fetchTempLastNValues(10)}
+        />
+      </div>
 
-      <SensorSection
-        title="Temperature Sensor"
-        isLoading={isLoadingTemp}
-        sensorData={tempSensorData}
-        chartData={tempChart}
-        onRefreshClick={tempData}
-        onLastNValuesClick={() => fetchTempLastNValues(10)}
-      />
+      {/* Humidity Sensor */}
+      <div className="col-span-1 px-2">
+        <SensorSection
+          title="Humidity Sensor"
+          isLoading={isLoadingHumidity}
+          sensorData={humiditySensorData}
+          chartData={humidityChart}
+          onRefreshClick={humidityData}
+          onLastNValuesClick={() => fetchHumidityLastNValues(10)}
+        />
+      </div>
 
-      <SensorSection
-        title="Humidity Sensor"
-        isLoading={isLoadingHumidity}
-        sensorData={humiditySensorData}
-        chartData={humidityChart}
-        onRefreshClick={humidityData}
-        onLastNValuesClick={() => fetchHumidityLastNValues(10)}
-      />
+      {/* Light Sensor */}
+      <div className="col-span-1 px-2">
+        <SensorSection
+          title="Light Sensor"
+          isLoading={isLoadingLight}
+          sensorData={lightSesnorData} // Corrected variable name
+          chartData={lightChart}
+          onRefreshClick={lightData}
+          onLastNValuesClick={() => fetchLightLastNValues(10)}
+        />
+      </div>
 
-      <SensorSection
-        title="Light Sensor"
-        isLoading={isLoadingLight}
-        sensorData={lightSesnorData}
-        chartData={lightChart}
-        onRefreshClick={lightData}
-        onLastNValuesClick={() => fetchLightLastNValues(10)}
-      />
-    </Paper>
+      {/* Additional Sensor (if needed) */}
+      <div className="col-span-1">
+        {/* Add your additional sensor here */}
+      </div>
+    </div>
   );
 };
 

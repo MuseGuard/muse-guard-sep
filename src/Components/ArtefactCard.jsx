@@ -36,13 +36,13 @@ const ArtefactCard = ({ artefact }) => {
   
   return (
     <div
-      className={`bg-white/40 rounded-lg overflow-hidden shadow-md px-3 py-1 cursor-pointer animate-fade-down ${
+      className={`bg-white/40 rounded-lg overflow-hidden shadow-md px-3 py-1 pt-3 cursor-pointer animate-fade-down h-[320px] ${
         selectedArtefact === artefact ? "selected" : ""
       }`}
       onClick={handleClick}
     >
       <img
-        className="w-full h-56 object-fill object-center"
+        className="w-full h-56 object-fill object-center rounded-2xl"
         src={artefact.imageUrl}
         alt="avatar"
       />

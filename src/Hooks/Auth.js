@@ -1,44 +1,35 @@
-import  { useState } from 'react';
+// useLogin.js
+import { useState } from 'react';
 import axios from 'axios';
 
-const Auth = () => {
-  const [pin, setPin] = useState('');
-  const [token, setToken] = useState('');
-  const [protectedMessage, setProtectedMessage] = useState('');
+const useLogin = () => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [token, setToken] = useState(null);
 
-  
-  const handleLogin = async () => {
+  const login = async (password) => {
+    setLoading(true);
+
     try {
-      const response = await axios.post(' ', { pin });
-      setToken(response.data.token);
+      const response = await axios.post('http://localhost:3000/jwt/login', { password });
+      const { token: responseToken } = response.data;
+
+      // Store the token in state
+      setToken(responseToken);
+
+      setLoading(false);
+      setError(null);
+
+      return response.data; // You can return additional data if needed
     } catch (error) {
-      console.error('Error logging in:', error);
+      setLoading(false);
+      setError(error.response.data.error);
+
+      throw error; // Re-throw the error for the component to handle if needed
     }
   };
 
-  
-  const accessProtectedEndpoint = async () => {
-    try {
-      const response = await axios.get(' ', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setProtectedMessage(response.data.message);
-    } catch (error) {
-      console.error('Error accessing protected endpoint:', error);
-    }
-  };
-
-  return {
-    pin,
-    setPin,
-    token,
-    setToken,
-    protectedMessage,
-    handleLogin,
-    accessProtectedEndpoint,
-  };
+  return { loading, error, token, login };
 };
 
-export default Auth;
+export default useLogin;

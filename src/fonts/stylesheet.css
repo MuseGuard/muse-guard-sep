@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Aladin';
+    src: local('Aladin'), local('Aladin'),
+        url('./Aladin-Regular.ttf') format('woff2'),
+        url('./Aladin-Regular.ttf') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}

@@ -13,7 +13,7 @@ const ArtefactGrid = () => {
     const currentArtefacts = artefactData.slice(startIndex, endIndex);
 
     return (
-        <div className="max-w-6xl mx-auto p-8 bg-black/20 flex flex-row">
+        <div className="max-w-6xl mx-auto py-4 bg-black/20 flex flex-row h-[700px] rounded-xl">
             <div className="flex justify-between items-center px-3">
             <img
                 src={previous}

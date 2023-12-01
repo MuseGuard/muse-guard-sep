@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect } from "react";
 import { useArtefactContext } from "../Components/ArtefactContext";
+import previous from '../Assets/previous.png';
 
 const ArtefactInfo = ({ artefact }) => {
     const { setSelectedArtefact } = useArtefactContext();
@@ -20,9 +21,9 @@ const ArtefactInfo = ({ artefact }) => {
     }
 
   return (
-    <div className="bg-gray-100 p-8 rounded-lg shadow-lg w-screen">
+    <div className=" bg-white/5 shadow-xl rounded-3xl p-8 w-screen flex flex-row animate-once">
            
-            <div className="mt-4">
+            <div className="mt-4 w-1/2">
                 <div className="flex items-center">
                     <div className="text-2xl font-semibold">
                         <h1>{artefact.name}</h1>
@@ -33,23 +34,36 @@ const ArtefactInfo = ({ artefact }) => {
                     <img
                         src={artefact.imageUrl}
                         alt={artefact.name}
-                        className="mt-2 rounded-lg shadow"
+                        className="mt-2 rounded-lg shadow w-[500px] h-[500px] animate-flip-up animate-once animate-duration-1000"
                     />
                 </div>
             </div>
-            <div className="mt-4">
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={onReturnToHome} >Home</button>
+            <div className="mt-4 px-5 w-1/2 flex justify-center items-center">
 
-                <div className="mt-4">
-                    <h2 className="text-xl font-bold mb-2">Additional Stats</h2>
-                    <p>Description: {artefact.description}</p>
+                
+                <div className="mt-4 justify-center items-center px-5 flex flex-col py-5  h-[500px] w-[500px]">
+                    <h2 className="text-4xl font-bold mb-2 ">Additional Info</h2>
+                    <div className='text-2xl font-thin'>
+                    <p>Description: <span className='font-bold'> {artefact.description}</span></p>
                     <p>Min Temperature: {artefact.minTemp}</p>
                     <p>Max Temperature: {artefact.maxTemp}</p>
                     <p>Max Light: {artefact.maxLight}</p>
                     <p>Min Humidity: {artefact.minHumidity}</p>
                     <p>Max Humidity: {artefact.maxHumidity}</p>
+                    </div>
+                    <div className="mt-4 justify-center items-center">
+                    <img
+                src={previous}
+                alt="Next"
+                className="cursor-pointer h-[70px] w-[100px]"
+                onClick={onReturnToHome}
+                
+            />
+                </div>
                 </div>
             </div>
+
+           
         </div>
     );
 };

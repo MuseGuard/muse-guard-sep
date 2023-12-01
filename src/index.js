@@ -5,11 +5,12 @@ import About from './Pages/About';
 import './index.css';
 import { RouterProvider, createHashRouter } from "react-router-dom";
 import App from './App';
+import AuthPage from './Components/AuthPage';
 import reportWebVitals from './reportWebVitals';
 import Info from './Pages/Info';
-import Artefact from './Pages/Artefact';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { ArtefactProvider } from './Components/ArtefactContext';
+import Artefact from './Pages/Artefact';
 
 
 const router = createHashRouter([
@@ -32,6 +33,10 @@ const router = createHashRouter([
       {
         path: "/manage",
         element: <Artefact/>,
+      },
+      {
+        path: '/login',  // Include the login route
+        element: <AuthPage />,
       },
     ],
   },
