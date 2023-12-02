@@ -1,60 +1,32 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useState } from 'react';
+import io from 'socket.io-client';
+
+const socket = io('http://localhost:3001'); // Replace with your server URL
 
 const useMotionData = () => {
-  const [motionSensorData, setMotionSensorData] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const url = "http://localhost:3000/motion/getMotion"; 
-
-  const fetchMotionData = () => {
-    setIsLoading(true);
-
-    axios
-      .get(url)
-      .then((response) => {
-        setMotionSensorData(response.data);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        setIsLoading(false);
-        console.error("Error fetching motion data:", error);
-      });
-  };
-
-  const updateMotionData = (detection) => {
-    setIsLoading(true);
-
-    axios
-      .patch(url, { detection })
-      .then((response) => {
-        console.log(response);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        setIsLoading(false);
-        console.error("Error updating motion data:", error);
-      });
-  };
+  const [detects, setDetects] = useState([]);
 
   useEffect(() => {
-    // Fetch data when the component is mounted
-    fetchMotionData();
+    // Fetch initial data
+    fetch('/getDetects')
+      .then((response) => response.json())
+      .then((data) => setDetects(data))
+      .catch((error) => console.error('Error fetching data:', error));
 
-    // Set up an interval to fetch data every 5 seconds
-    const intervalId = setInterval(() => {
-      fetchMotionData();
-    }, 5000);
+    // Listen for real-time updates
+    socket.on('dataUpdated', (updatedData) => {
+      setDetects(updatedData);
+    });
 
-    // Clean up the interval when the component is unmounted
-    return () => clearInterval(intervalId);
+    return () => {
+      // Clean up event listeners when the component unmounts
+      socket.disconnect();
+    };
   }, []);
 
   return {
-    motionSensorData,
-    isLoading,
-    fetchMotionData,
-    updateMotionData,
-  };
+    detects,
+  }
 };
 
 export default useMotionData;

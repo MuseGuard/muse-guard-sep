@@ -4,6 +4,7 @@ import bin from '../Assets/bin.png';
 import '../Styles/Artefact.css';
 import PinCodePage from '../Components/PinCodePage';
 import ChangePassword from '../Components/ChangePassword';
+import ChangePin from '../Components/ChangePin';
 const Artefact = () => {
 
     const {
@@ -109,7 +110,7 @@ const Artefact = () => {
                     </div>
                 </div>
             </div>
-            <div className="flex flex-col w-1/3 space-y-2  bg-white/5 shadow-xl rounded-3xl animate-fade-down">
+            <div className="flex flex-col w-1/3 space-y-2  bg-white/5 shadow-xl rounded-3xl animate-fade-down overflow-auto">
                 <div className="flex justify-center items-center pt-4">
                     <h2 className='text-3xl'>ARTEFACT LIST</h2>
                 </div>
@@ -150,7 +151,10 @@ const Artefact = () => {
 
                 </div>
                 <div className='h-1/3 bg-white/5 animate-fade-up'>
-                    <h2>Change Pin</h2>
+                    <div className='flex justify-center items-center mt-2 mb-2'>
+                        <h2 className='text-3xl'>Change Pin</h2>
+                        </div>
+                    <ChangePin />
                 </div>
             </div>
         </div>

@@ -3,6 +3,7 @@ import { Line } from "react-chartjs-2";
 import useTempData from "../Hooks/useTempData";
 import useHumidityData from "../Hooks/useHumidityData";
 import useLightData from "../Hooks/useLightData";
+import useMotionData from "../Hooks/useMotionData";
 
 
 const SensorSection = ({ title, isLoading, sensorData, chartData, onRefreshClick, onLastNValuesClick }) => {
@@ -68,6 +69,8 @@ const Info = () => {
     lightChart,
   } = useLightData();
 
+  const { detects } = useMotionData();
+
   return (
     <div className="grid grid-cols-2 gap-2 bg-white/40 mt-5 mb-5 w-screen h-[710px] mr-8 ml-8 shadow-xl rounded-3xl animate-fade-up">
       {/* Temperature Sensor */}
@@ -108,8 +111,13 @@ const Info = () => {
 
       {/* Additional Sensor (if needed) */}
       <div className="col-span-1">
-        {/* Add your additional sensor here */}
-      </div>
+      <h2>Motion Data</h2>
+      <ul>
+        {detects.map((detect) => (
+          <li key={detect._id}>{/* Render your detect data here */}</li>
+        ))}
+      </ul>
+    </div>
     </div>
   );
 };
