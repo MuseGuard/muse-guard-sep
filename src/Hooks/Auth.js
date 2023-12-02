@@ -6,6 +6,7 @@ const useLogin = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [token, setToken] = useState(null);
+  const [success, setSuccess] = useState(false);
 
   const login = async (password) => {
     setLoading(true);
@@ -29,7 +30,32 @@ const useLogin = () => {
     }
   };
 
-  return { loading, error, token, login };
+  const updatePassword = async (oldPassword, newPassword) => {
+    setLoading(true);
+
+    try {
+      const response = await axios.patch('http://localhost:3000/jwt/update-password', {
+        oldPassword,
+        newPassword,
+      });
+
+      if (response.status === 200) {
+        setSuccess(true);
+        setError(null);
+      } else {
+        setSuccess(false);
+        setError('Password update failed');
+      }
+    } catch (error) {
+      setSuccess(false);
+      setError(error.response?.data?.error || 'Internal Server Error');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
+  return { loading, error, token, login , updatePassword, success};
 };
 
 export default useLogin;
