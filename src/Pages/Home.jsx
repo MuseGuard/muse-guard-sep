@@ -4,6 +4,7 @@ import { useArtefactContext } from "../Components/ArtefactContext";
 import ArtefactInfo from "../Components/ArtefactInfo";
 import loading from '../Assets/loading.gif';
 import ManagingArtefact from "../Hooks/ManagingArtefact";
+import Notifications from "../Components/Notifications.jsx";
 
 const Home = () => {
     const { isLoading } = ManagingArtefact();
@@ -21,7 +22,8 @@ const Home = () => {
                 // Display artefact grid when no artefact is selected
                 <ArtefactGrid />
             )}
-            <div className="flex flex-col bg-black/40 w-1/4"></div>
+            <Notifications />
+            
         </div>
     );
 };
