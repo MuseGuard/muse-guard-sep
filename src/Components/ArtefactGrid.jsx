@@ -13,7 +13,7 @@ const ArtefactGrid = () => {
     const currentArtefacts = artefactData.slice(startIndex, endIndex);
 
     return (
-        <div className="max-w-6xl mx-auto py-4 bg-black/20 flex flex-row h-[700px] rounded-xl">
+        <div className="max-w-6xl mx-auto py-4 bg-black/20 flex flex-row h-[700px] rounded-xl animate-fade-down">
             <div className="flex justify-between items-center px-3">
             <img
                 src={previous}
@@ -25,7 +25,7 @@ const ArtefactGrid = () => {
             </div>
             <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 `}>
                 {isLoading ? (
-                    <img src={loading} alt="loading" />
+                    <img src={loading} alt="loading"/>
                 ) : (
                     currentArtefacts.map((artefact) => (
                         <ArtefactCard key={artefact.name} artefact={artefact} />

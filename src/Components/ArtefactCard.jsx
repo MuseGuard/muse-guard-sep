@@ -42,7 +42,7 @@ const ArtefactCard = ({ artefact }) => {
       onClick={handleClick}
     >
       <img
-        className="w-full h-56 object-fill object-center rounded-2xl"
+        className="w-full h-56 object-fill object-center rounded-2xl hover:animate-pulse "
         src={artefact.imageUrl}
         alt="avatar"
       />

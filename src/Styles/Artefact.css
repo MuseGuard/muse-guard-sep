@@ -1,0 +1,31 @@
+/* Artefact.css */
+
+/* Default styles for all screen sizes */
+.Artefact {
+    font-size: 16px;
+    padding: 10px;
+}
+
+/* Desktop styles (min-width: 768px) */
+@media screen and (min-width: 768px) {
+    .Artefact {
+        font-size: 18px;
+        padding: 20px;
+    }
+}
+
+/* Tablet styles (min-width: 576px) and (max-width: 767px) */
+@media screen and (min-width: 576px) and (max-width: 767px) {
+    .Artefact {
+        font-size: 16px;
+        padding: 15px;
+    }
+}
+
+/* Mobile styles (max-width: 575px) */
+@media screen and (max-width: 575px) {
+    .Artefact {
+        font-size: 14px;
+        padding: 12px;
+    }
+}

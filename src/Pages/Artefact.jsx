@@ -1,7 +1,8 @@
 import React from 'react';
 import ManagingArtefact from '../Hooks/ManagingArtefact';
-import ToggleSensorState from '../Hooks/toggleSensorState';
 import bin from '../Assets/bin.png';
+import '../Styles/Artefact.css';
+import PinCodePage from '../Components/PinCodePage';
 const Artefact = () => {
 
     const {
@@ -13,15 +14,11 @@ const Artefact = () => {
         handleDeleteArtefact,
     } = ManagingArtefact();
 
-    const {
-        toggleState,
-        handleToggleSensors
-    } = ToggleSensorState();
 
     return (
-        <div className="flex flex-row  w-screen  py-5 px-3  animate-fade-right space-x-2  h-[700px]">
+        <div className="flex flex-row  w-screen  py-5 px-3 space-x-2  h-[700px]">
 
-            <div className="flex flex-col  bg-white/5 shadow-xl rounded-3xl w-1/3 space-y-2 items-center h-auto">
+            <div className="flex flex-col  bg-white/5 shadow-xl rounded-3xl w-1/3 space-y-2 items-center h-auto animate-fade-right">
                 <div className="flex justify-center items-center pt-4">
                     <h2 className='text-3xl'>Add Artefact</h2>
                 </div>
@@ -111,7 +108,7 @@ const Artefact = () => {
                 </div>
                 </div>
             </div>
-            <div className="flex flex-col w-1/3 space-y-2  bg-white/5 shadow-xl rounded-3xl">
+            <div className="flex flex-col w-1/3 space-y-2  bg-white/5 shadow-xl rounded-3xl animate-fade-down">
                 <div className="flex justify-center items-center pt-4">
                     <h2 className='text-3xl'>ARTEFACT LIST</h2>
                 </div>
@@ -137,29 +134,20 @@ const Artefact = () => {
                     </ol>
                 )}
             </div>
-            <div className="flex flex-col bg-black/25 shadow-xl rounded-3xl w-1/3 ">
-                <label className='autoSaverSwitch relative inline-flex cursor-pointer select-none items-center justify-center'>
-                    <input
-                        type='checkbox'
-                        name='autoSaver'
-                        className='sr-only'
-                        checked={toggleState}
-                        onChange={handleToggleSensors}
-                    />
-                    <span
-                        className={`slider mr-3 flex h-[45px] w-[90px] items-center rounded-full p-1 duration-200 ${toggleState ? 'bg-green-500' : 'bg-[#CCCCCE]'
-                            }`}
-                    >
-                        <span
-                            className={`dot h-[45px] w-[45px] rounded-full bg-white duration-200 ${toggleState ? 'translate-x-6' : ''
-                                }`}
-                        ></span>
-                    </span>
-                    <span className='label flex items-center text-sm font-medium text-black'>
-                        Sensor <span className='pl-1'> {toggleState ? 'On' : 'Off'} </span>
-                    </span>
-                </label>
+            <div className="flex flex-col shadow-xl rounded-3xl w-1/3 space-y-2">
+                <div className='h-1/3 bg-white/10 animate-fade-down'>
+                    <h2>Change Password</h2>
+                </div>
+                <div className='h-1/3 bg-white/5 animate-fade-left '>
+                   <div className='flex justify-center items-center mt-2 mb-'> 
+                    <h2 className='text-3xl'>Enter Pin</h2>
+                    </div>
+                    <PinCodePage/>
 
+                </div>
+                <div className='h-1/3 bg-white/5 animate-fade-up'>
+                   <h2>Change Pin</h2>         
+                </div>
             </div>
         </div>
     )

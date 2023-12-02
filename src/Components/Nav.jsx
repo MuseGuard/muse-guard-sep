@@ -22,16 +22,16 @@ const NavBar = () => {
             About
           </Link>
           <Link
-            to="/manage"
-            className="text-white px-3 py-2 border border-gray-500 rounded transition duration-500 ease-in-out hover:bg-gray-100 hover:rounded-full hover:text-black"
-          >
-            ArteFacts
-          </Link>
-          <Link
             to="/data"
             className="text-white px-3 py-2 border border-gray-500 rounded transition duration-500 ease-in-out hover:bg-gray-100 hover:rounded-full hover:text-black"
           >
             Info
+          </Link>
+          <Link
+            to="/manage"
+            className="text-white px-3 py-2 border border-gray-500 rounded transition duration-500 ease-in-out hover:bg-gray-100 hover:rounded-full hover:text-black"
+          >
+            DashBoard
           </Link>
         </div>
       </div>

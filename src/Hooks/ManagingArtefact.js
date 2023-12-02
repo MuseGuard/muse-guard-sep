@@ -15,7 +15,7 @@ const ManagingArtefact = () => {
 
   const [errorMessage, setErrorMessage] = useState(null);
   const [artefactData, setArtefactData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState();
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(8); // Change this value based on your preference

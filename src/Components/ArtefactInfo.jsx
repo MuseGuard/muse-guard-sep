@@ -21,7 +21,7 @@ const ArtefactInfo = ({ artefact }) => {
     }
 
   return (
-    <div className=" bg-white/5 shadow-xl rounded-3xl p-8 w-screen flex flex-row animate-once">
+    <div className=" bg-white/5 shadow-xl rounded-3xl p-8 w-screen flex flex-row ">
            
             <div className="mt-4 w-1/2">
                 <div className="flex items-center">
@@ -29,19 +29,19 @@ const ArtefactInfo = ({ artefact }) => {
                         <h1>{artefact.name}</h1>
                     </div>
                 </div>
-                <div className="mt-4">
+                <div className="mt-4 animate-fade-right">
                     <h1 className="text-lg font-bold">GALLERY</h1>
                     <img
                         src={artefact.imageUrl}
                         alt={artefact.name}
-                        className="mt-2 rounded-lg shadow w-[500px] h-[500px] animate-flip-up animate-once animate-duration-1000"
+                        className="mt-2 rounded-lg shadow w-[500px] h-[500px] animate-fade-right"
                     />
                 </div>
             </div>
             <div className="mt-4 px-5 w-1/2 flex justify-center items-center">
 
                 
-                <div className="mt-4 justify-center items-center px-5 flex flex-col py-5  h-[500px] w-[500px]">
+                <div className="mt-4 justify-center items-center px-5 flex flex-col py-5  h-[500px] w-[500px] animate-fade-left">
                     <h2 className="text-4xl font-bold mb-2 ">Additional Info</h2>
                     <div className='text-2xl font-thin'>
                     <p>Description: <span className='font-bold'> {artefact.description}</span></p>
