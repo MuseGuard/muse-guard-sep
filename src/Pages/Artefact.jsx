@@ -5,6 +5,11 @@ import add from '../Assets/add.gif';
 import { Button, TextField, Modal, Typography , ToggleButton , ToggleButtonGroup} from "@mui/material";
 import '../Styles/ManageArtefact.css';
 import ToggleSensorState from "../Hooks/toggleSensorState";
+import useHumidityData from "../Hooks/useHumidityData";
+import useLightData from "../Hooks/useLightData";
+import useTempData from "../Hooks/useTempData";
+import Notification from "../Pages/Notification";
+
 
 const Artefact = () => {
   const {
@@ -21,8 +26,9 @@ const Artefact = () => {
     toggleState,
     handleToggleSensors
   } = ToggleSensorState();
-
+ 
   const [isPopupOpen, setPopupOpen] = useState(false);
+  const [notification, setNotification] = useState({ open: false, message: '' });
 
   const openPopup = () => {
     setPopupOpen(true);
@@ -31,6 +37,31 @@ const Artefact = () => {
   const closePopup = () => {
     setPopupOpen(false);
   };
+  const {
+    maxHumidity,
+    minHumidity,
+    showNotification: showHumidityNotification,
+    humidityChart,
+    LineChart: HumidityLineChart,
+  } = useHumidityData();
+
+  const {
+    maxLightLevel,
+    minLight,
+    showNotification: showLightNotification,
+    lightChart,
+    LineChart: LightLineChart,
+  } = useLightData();
+
+  const {
+    maxTemperature,
+    minTemperature,
+    showNotification: showTempNotification,
+    tempChart,
+    LineChart: TempLineChart,
+  } = useTempData();
+
+
 
   return (
     <div className="manage-artefact-container">
@@ -105,7 +136,7 @@ const Artefact = () => {
                 type="text"
                 name="maxHumidity"
                 value={artefact.maxHumidity}
-                onChange={handleInput}
+                onChange={handleInput} 
               />
             </div>
             <div className="input-container">
@@ -149,6 +180,57 @@ const Artefact = () => {
           Turn Off Sensors
         </ToggleButton>
       </ToggleButtonGroup>
+
+         {/* Display Temperature LineChart */}
+         {TempLineChart}
+      {/* Display Humidity LineChart */}
+      {HumidityLineChart}
+      {/* Display Light Level LineChart */}
+      {LightLineChart}
+
+      {/* Notification component for displaying messages */}
+      <Notification
+        open={notification.open}
+        onClose={() => setNotification({ ...notification, open: false })}
+        message={notification.message}
+      />
+
+      {/* Add Temperature threshold notification */}
+      {showTempNotification && (
+        <div className="notification-popup">
+          Temperature threshold exceeded!
+          <Button
+            onClick={() => setNotification({ open: true, message: 'Temperature threshold exceeded!' })}
+            variant="contained"
+          >
+            View Details
+          </Button>
+        </div>
+      )}
+      {/* Add Humidity threshold notification */}
+      {showHumidityNotification && (
+        <div className="notification-popup">
+          Humidity threshold exceeded!
+          <Button
+            onClick={() => setNotification({ open: true, message: 'Humidity threshold exceeded!' })}
+            variant="contained"
+          >
+            View Details
+          </Button>
+        </div>
+      )}
+      {/* Add Light Level threshold notification */}
+      {showLightNotification && (
+        <div className="notification-popup">
+          Light level threshold exceeded!
+          <Button
+            onClick={() => setNotification({ open: true, message: 'Light level threshold exceeded!' })}
+            variant="contained"
+          >
+            View Details
+          </Button>
+        </div>
+      )}
 
       <Typography variant="h2">Artefact List</Typography>
       {isLoading ? (

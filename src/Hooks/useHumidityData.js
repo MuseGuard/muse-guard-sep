@@ -1,13 +1,15 @@
+
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
 import "chartjs-adapter-date-fns";
 import { Chart, registerables } from "chart.js";
 import { format } from 'date-fns';
+import { useNotification } from "./NotificationContext";
 
 Chart.register(...registerables);
 
-const useHumidityData = () => {
+const useHumidityData = (maxHumidity) => {
   const [humiditySensorData, sethumiditySensorData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const url = "http://localhost:3000/humid/getHumidities"; // Replace with your API endpoint URL

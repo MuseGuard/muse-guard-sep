@@ -5,21 +5,26 @@ import "chartjs-adapter-date-fns";
 import { Chart, registerables } from "chart.js";
 import { format } from 'date-fns';
 
+import { useNotification } from "./NotificationContext";
 Chart.register(...registerables);
 
-const useLightData = () => {
+const useLightData = (maxLightLevel) => {
   const [lightSesnorData, setlightSesnorData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const notify = useNotification(); // Use the useNotification hook
   const url = "http://localhost:3000/light/getLightLevels"; // Replace with your API endpoint URL
 
   const lightData = () => {
     //setIsLoading(true);
-
     axios
       .get(url)
       .then((response) => {
-        console.log(response);
         setlightSesnorData(response.data);
+
+        const latestLightLevel = response.data[response.data.length - 1].lightLevel;
+        if (latestLightLevel > maxLightLevel) {
+          notify("Light level threshold exceeded!");
+        }
 
         setIsLoading(false);
       })
@@ -29,12 +34,18 @@ const useLightData = () => {
       });
   };
 
-  const fetchLightLastNValues = (n) => {
+
+  const fetchLightLastNValues = () => {
     setIsLoading(true);
     axios
       .get(url)
       .then((response) => {
         setlightSesnorData(response.data);
+        const latestLightLevel = response.data[response.data.length - 1].lightLevel;
+        if (latestLightLevel > maxLightLevel) {
+          notify("Light level threshold exceeded!");
+        }
+
         setIsLoading(false);
       })
       .catch((error) => {
@@ -42,7 +53,6 @@ const useLightData = () => {
         console.error("Error Fetching last N values of sensor data:", error);
       });
   };
-
   useEffect(() => {
     // Fetch data when the component is mounted
     lightData();
@@ -83,3 +93,4 @@ const useLightData = () => {
 };
 
 export default useLightData;
+
