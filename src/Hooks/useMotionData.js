@@ -1,32 +1,35 @@
 import { useEffect, useState } from 'react';
-import io from 'socket.io-client';
-
-const socket = io('http://localhost:3001'); // Replace with your server URL
+import axios from 'axios';
 
 const useMotionData = () => {
-  const [detects, setDetects] = useState([]);
+  const [motionData, setMotionData] = useState([]);
+  // State to handle loading state
+  const [loading, setLoading] = useState(true);
+  // State to handle error state
+  const [error, setError] = useState(null);
+
+  const fetchData = async () => {
+    try {
+      // Make a GET request to the API endpoint
+      const response = await axios.get('http://localhost:3000/motdetect/getDetects');
+
+      console.log(response);
+      // Update the motionData state with the fetched motionData
+      setMotionData(response.data);
+    } catch (error) {
+      // Update the error state if an error occurs
+      setError(error);
+    } finally {
+      // Set loading to false after the request is complete
+      setLoading(false);
+    }
+  } 
 
   useEffect(() => {
-    // Fetch initial data
-    fetch('/getDetects')
-      .then((response) => response.json())
-      .then((data) => setDetects(data))
-      .catch((error) => console.error('Error fetching data:', error));
-
-    // Listen for real-time updates
-    socket.on('dataUpdated', (updatedData) => {
-      setDetects(updatedData);
-    });
-
-    return () => {
-      // Clean up event listeners when the component unmounts
-      socket.disconnect();
-    };
+    fetchData();
   }, []);
 
-  return {
-    detects,
-  }
+  return { motionData, loading, error };
 };
 
 export default useMotionData;

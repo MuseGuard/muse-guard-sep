@@ -69,7 +69,7 @@ const Info = () => {
     lightChart,
   } = useLightData();
 
-  const { detects } = useMotionData();
+  const { motionData, loading, error } = useMotionData();
 
   return (
     <div className="grid grid-cols-2 gap-2 bg-white/40 mt-5 mb-5 w-screen h-[710px] mr-8 ml-8 shadow-xl rounded-3xl animate-fade-up">
@@ -111,13 +111,18 @@ const Info = () => {
 
       {/* Additional Sensor (if needed) */}
       <div className="col-span-1">
-      <h2>Motion Data</h2>
-      <ul>
-        {detects.map((detect) => (
-          <li key={detect._id}>{/* Render your detect data here */}</li>
-        ))}
-      </ul>
-    </div>
+        <h2>Motion Data</h2>
+       <div className="flex justify-center items-center pt-4 bg-white/5"> 
+        {motionData && motionData.length > 0 ? (
+          <ol>
+            <li>Current Motion: {motionData[0].warning}</li>
+            {/* Add more motion-related information as needed */}
+          </ol>
+        ) : (
+          <p>No motion data available.</p>
+        )}
+       </div> 
+      </div>
     </div>
   );
 };
