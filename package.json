@@ -11,7 +11,6 @@
     "@mui/styled-engine": "^5.14.18",
     "@mui/system": "^5.14.18",
     "@mui/x-charts": "^6.18.1",
-    "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.0",
@@ -32,7 +31,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "vue-cli-service lint --no-fix --max-warnings 0"
   },
   "eslintConfig": {
     "extends": [
@@ -54,6 +54,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@testing-library/jest-dom": "^6.1.5",
     "tailwindcss": "^3.3.5",
     "tailwindcss-animated": "^1.0.1"
   }
