@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Nav from './Pages/Nav';
 import { Outlet } from 'react-router-dom';
-import AuthPage from './Pages/Auth'; // Assuming you have AuthPage.jsx
-import './App.css'; // Import the custom CSS file
+import AuthPage from './Pages/Auth'; 
+import './App.css'; 
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
