@@ -1,35 +1,82 @@
-import LightNotification  from "../Assets/Light.png"
-import  tempNotification  from "../Assets/Temp.png"
-import  humidityNotification  from "../Assets/Humidity.png"
+import React, { useState, useEffect } from 'react';
+import useNotification from '../Hooks/useNotifications';
+import LightNotification from "../Assets/Light.png";
+import tempNotification from "../Assets/Temp.png";
+import humidityNotification from "../Assets/Humidity.png";
+
 const NotificationCard = () => {
-    return ( 
-        <div className="bg-white/40 shadow-xl flex flex-col w-[230px] h-[130px] items-center rounded-3xl">
-                <h1 className="text-lg"> Mona Lisa </h1>
-                <h2 className="text-sm "> 02/12/2023 16:17 </h2>
-                <div className="flex flex-col h-[100px] w-[210px]"> 
-                    <div className=" h-1/3 w-[210px] flex flex-row justify-between items-center px-2">
-                       
-                        <h2 className="text-sm"> Light levels too dim!</h2>
-                        <img src={LightNotification} alt="LightNotification" />
-                     </div>
-                    
-                    <div className="h-1/3 w-[210px] flex flex-row  items-center justify-between px-2"> 
-                    
-                    <h2 className="text-sm">Temperature too high!</h2> 
-                    <img  src={tempNotification} alt="tempNotification" />
+  const [refreshCount, setRefreshCount] = useState(0);
+  const notifications = useNotification();
+  const [visibleNotifications, setVisibleNotifications] = useState([]);
 
-                    </div>
+  const refreshNotifications = () => {
+    console.log('Refresh button clicked');
+  setRefreshCount(prevCount => prevCount + 1);
+  };
 
-                    <div className="h-1/3 w-[210px] flex flex-row items-center justify-between px-2">
-                    
-                        <h2 className="text-sm" > Too humid!</h2> 
-                         <img src={humidityNotification} alt="humidityNotification" />
-                         </div>
+  useEffect(() => {
+    console.log('Fetching new data...', refreshCount);
+    const limitedNotifications = notifications.slice(0, 5);
+    setVisibleNotifications(limitedNotifications);
+  }, [notifications, refreshCount]);
+  
+  return (
+    <div className="max-w-screen-md mx-auto p-4">
+      <div className="mb-4 text-center">
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={refreshNotifications}>
+          Refresh
+        </button>
+      </div>
+      {visibleNotifications.map((notification, index) => (
+        <div key={index} className="bg-white/40 shadow-xl flex flex-col mb-4 p-4 rounded-3xl">
+          <h2 className="text-md text-center mb-2">{notification.artefactName}</h2>
+          <div className="flex items-center mt-2">
+            <div className="mr-2">
+              {notification.warning.includes('Temperature') && (
+                <div className="mb-2 flex items-center">
+                  <img 
+                    src={tempNotification}
+                    alt="tempNotification"
+                    className="w-8 h-8 transition-transform transform hover:scale-110"
+                  />
+                  <div className="mt-2 ml-2">
+                    <span className="text-xs">{notification.temperature}</span>
+                  </div>
                 </div>
-            
-
+              )}
+              {notification.warning.includes('Humidity') && (
+                <div className="mb-2 flex items-center">
+                  <img
+                    src={humidityNotification}
+                    alt="humidityNotification"
+                    className="w-8 h-8 transition-transform transform hover:scale-110"
+                  />
+                  <div className="mt-2 ml-2">
+                    <span className="text-xs">{notification.humidity}</span>
+                  </div>
+                </div>
+              )}
+              {notification.warning.includes('Light') && (
+                <div className="mb-2 flex items-center">
+                  <img
+                    src={LightNotification}
+                    alt="LightNotification"
+                    className="w-8 h-8 transition-transform transform hover:scale-110"
+                  />
+                  <div className="mt-2 ml-2">
+                    <span className="text-xs bg-blue-100">{notification.light}</span>
+                  </div>
+                </div>
+              )}
             </div>
-     );
+            <div className="mt-2">
+              {notification.warning}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
 
-}
 export default NotificationCard;
