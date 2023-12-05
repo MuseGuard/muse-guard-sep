@@ -6,40 +6,43 @@ import humidityNotification from "../Assets/Humidity.png";
 
 const NotificationCard = () => {
   const [refreshCount, setRefreshCount] = useState(0);
+  const [showOldData, setShowOldData] = useState(false);
   const notifications = useNotification();
   const [visibleNotifications, setVisibleNotifications] = useState([]);
-  console.log('Initial notifications:', notifications);
+
   const refreshNotifications = () => {
-    setRefreshCount((prevCount) => prevCount + 1);
+    setShowOldData(false);
+    setRefreshCount(prevCount => prevCount + 1);
   };
+
+  const rewindNotifications = () => {
+    setShowOldData(true);
+  };
+
   useEffect(() => {
-    console.log('Fetching data...');
-  
-    //refresh data every 10 seconds
-    const fetchDataInterval = setInterval(async () => {
-      await refreshNotifications(); // This triggers a re-render and updates visible notifications
-      console.log('Fetching new data...', notifications); // Log the fetched data
-    }, 10 * 1000);
-  
-    // Clean up the interval
-    return () => clearInterval(fetchDataInterval);
-  }, []); // Empty dependency array so the effect runs only one time
-  
-  useEffect(() => {
-    const limitedNotifications = notifications.slice(0, 3);
+    console.log('init noti', notifications);
+
+    const limitedNotifications = showOldData
+      ? notifications.slice(3, 6) // Adjust the range based on the number of notifications you want to show
+      : notifications.slice(0, 3);
     setVisibleNotifications(limitedNotifications);
-  }, [notifications, refreshCount]);
-  
+  }, [notifications, refreshCount, showOldData]);
+
   return (
     <div className="max-w-screen-md mx-auto p-4">
-      <div className="mb-4 text-center">
+      <div className="mb-4 flex justify-center space-x-4">
+        
+         <button className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" onClick={rewindNotifications}>
+          Rewind
+        </button>
+
         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={refreshNotifications}>
           Refresh
         </button>
 
       </div>
       {visibleNotifications.map((notification, index) => (
-        <div key={index} className="bg-white/40 shadow-xl flex flex-col mb-4 p-4 rounded-3xl">
+        <div key={index} className="bg-white/40 shadow-xl flex flex-col mb-4 p-4 rounded-3xl animate-shake hover:animate-none">
           <h2 className="text-md text-center mb-2">{notification.artefactName}</h2>
           <div className="flex items-center mt-2">
             <div className="mr-2">
