@@ -78,7 +78,7 @@ const NotificationCard = () => {
                     className="w-8 h-8 transition-transform transform hover:scale-110"
                   />
                   <div className="mt-2 ml-2">
-                    <span className="text-xs bg-blue-100">{notification.light}</span>
+                    <span className="text-xs">{notification.light}</span>
                   </div>
                 </div>
               )}
