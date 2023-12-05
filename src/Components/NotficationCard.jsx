@@ -8,15 +8,25 @@ const NotificationCard = () => {
   const [refreshCount, setRefreshCount] = useState(0);
   const notifications = useNotification();
   const [visibleNotifications, setVisibleNotifications] = useState([]);
-
+  console.log('Initial notifications:', notifications);
   const refreshNotifications = () => {
-    console.log('Refresh button clicked');
-  setRefreshCount(prevCount => prevCount + 1);
+    setRefreshCount((prevCount) => prevCount + 1);
   };
-
   useEffect(() => {
-    console.log('Fetching new data...', refreshCount);
-    const limitedNotifications = notifications.slice(0, 5);
+    console.log('Fetching data...');
+  
+    //refresh data every 10 seconds
+    const fetchDataInterval = setInterval(async () => {
+      await refreshNotifications(); // This triggers a re-render and updates visible notifications
+      console.log('Fetching new data...', notifications); // Log the fetched data
+    }, 10 * 1000);
+  
+    // Clean up the interval
+    return () => clearInterval(fetchDataInterval);
+  }, []); // Empty dependency array so the effect runs only one time
+  
+  useEffect(() => {
+    const limitedNotifications = notifications.slice(0, 3);
     setVisibleNotifications(limitedNotifications);
   }, [notifications, refreshCount]);
   
@@ -26,6 +36,7 @@ const NotificationCard = () => {
         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={refreshNotifications}>
           Refresh
         </button>
+
       </div>
       {visibleNotifications.map((notification, index) => (
         <div key={index} className="bg-white/40 shadow-xl flex flex-col mb-4 p-4 rounded-3xl">
