@@ -2,11 +2,11 @@ import React from 'react';
 import ManagingArtefact from '../Hooks/ManagingArtefact';
 import bin from '../Assets/bin.png';
 import '../Styles/Artefact.css';
+import ChangePin from '../Components/ChangePin';
 import PinCodePage from '../Components/PinCodePage';
 import ChangePassword from '../Components/ChangePassword';
-import ChangePin from '../Components/ChangePin';
-const Artefact = () => {
 
+const Artefact = () => {
     const {
         handleInput,
         handleArtefact,
@@ -16,15 +16,12 @@ const Artefact = () => {
         handleDeleteArtefact,
     } = ManagingArtefact();
 
-
     return (
-        <div className="flex flex-row  w-screen  py-5 px-3 space-x-2  h-[700px]">
-
-            <div className="flex flex-col  bg-white/5 shadow-xl rounded-3xl w-1/3 space-y-2 items-center h-auto animate-fade-right">
-                <div className="flex justify-center items-center pt-4">
-                    <h2 className='text-3xl'>Add Artefact</h2>
-                </div>
+        <div className="flex flex-col desktop:flex-row w-screen h-[700px] desktop:mt-4 desktop:space-y-2 desktop:space-x-2">
+            <div className="bg-white/5 shadow-xl rounded-3xl w-full desktop:w-1/3 p-4 animate-fade-right">
+                <h2 className="text-3xl text-center">Add Artefact</h2>
                 <div className="space-y-8">
+                    {/* ... Input fields and add button */}
                     <div className="input-container space-x-1 ">
                         <label>Name:</label>
                         <input
@@ -110,17 +107,16 @@ const Artefact = () => {
                     </div>
                 </div>
             </div>
-            <div className="flex flex-col w-1/3 space-y-2  bg-white/5 shadow-xl rounded-3xl animate-fade-down overflow-auto">
-                <div className="flex justify-center items-center pt-4">
-                    <h2 className='text-3xl'>ARTEFACT LIST</h2>
-                </div>
+
+            <div className="bg-white/5 shadow-xl rounded-3xl w-full desktop:w-1/3 p-4 animate-fade-down overflow-auto">
+                <h2 className="text-3xl text-center">ARTEFACT LIST</h2>
                 {isLoading ? (
                     <p>Loading...</p>
                 ) : (
                     <ol>
                         {artefactData.map((artefact) => (
                             <li key={artefact.name}>
-                                {/* Display the artefact name */}
+                                {/* ... Display the artefact name and delete button */}
                                 <div className='flex flex-col px-2'>
                                     <div className="flex flex-row justify-between space-y-2 px-2 pb-2">
                                         <span className='pt-2 text-md'>{artefact.name}</span>
@@ -130,35 +126,28 @@ const Artefact = () => {
                                     </div>
                                     <hr className='opacity-50' />
                                 </div>
-
                             </li>
                         ))}
                     </ol>
                 )}
             </div>
-            <div className="flex flex-col shadow-xl rounded-3xl w-1/3 space-y-2">
-                <div className='h-1/3 bg-white/10 animate-fade-down'>
-                    <div className='flex justify-center items-center mt-2 mb-2'>
-                        <h2 className='text-3xl'>Change Password</h2>
-                    </div>
+
+            <div className="flex flex-col w-full desktop:w-1/3 space-y-2 bg-white/5 shadow-xl rounded-3xl p-4">
+                <div className="h-1/3 bg-white/10 animate-fade-down">
+                    <h2 className="text-3xl text-center">Change Password</h2>
                     <ChangePassword />
                 </div>
-                <div className='h-1/3 bg-white/5 animate-fade-left '>
-                    <div className='flex justify-center items-center mt-2 mb-2'>
-                        <h2 className='text-3xl'>Enter Pin</h2>
-                    </div>
+                <div className="h-1/3 bg-white/5 animate-fade-left">
+                    <h2 className="text-3xl text-center">Enter Pin</h2>
                     <PinCodePage />
-
                 </div>
-                <div className='h-1/3 bg-white/5 animate-fade-up'>
-                    <div className='flex justify-center items-center mt-2 mb-2'>
-                        <h2 className='text-3xl'>Change Pin</h2>
-                        </div>
+                <div className="h-1/3 bg-white/5 animate-fade-up">
+                    <h2 className="text-3xl text-center">Change Pin</h2>
                     <ChangePin />
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Artefact;
