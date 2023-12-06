@@ -12,6 +12,7 @@ const Home = () => {
 
     return (
         <div className="flex flex-row w-screen py-5 px-3 space-x-2">
+            <div className="flex flex-col justify-center items-center space-y-4">
             {isLoading ? (
                 // Display loading image when artefacts are being loaded
                 <img src={loading} alt="Loading" />
@@ -22,7 +23,10 @@ const Home = () => {
                 // Display artefact grid when no artefact is selected
                 <ArtefactGrid />
             )}
-            <Notifications />
+            </div>
+            <div className="flex  space-y-4 w-[1/4]">
+                <Notifications />
+            </div>
             
         </div>
     );
