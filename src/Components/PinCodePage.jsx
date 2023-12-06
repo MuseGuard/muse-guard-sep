@@ -62,7 +62,7 @@ const PinCodePage = () => {
         disabled={loading}
         className="bg-blue-500 text-white px-4 py-2 rounded focus:outline-none focus:ring focus:ring-blue-500"
       >
-        Activate Device
+        Toggle Device
       </button>
       </div>
 

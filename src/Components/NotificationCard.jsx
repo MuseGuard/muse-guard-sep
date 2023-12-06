@@ -44,7 +44,7 @@ const NotCard = () => {
             </div>
             <div className="flex flex-col justify-center items-center space-y-4">
                 {visibleNotifications.map((notification) => (
-                    <div key={notification.artefactId} className="bg-white/40 rounded-xl w-[300px] p-4 mb-4 flex flex-col">
+                    <div key={notification.artefactId} className="bg-white/40 rounded-xl desktop:w-[300px] laptop:w-[200px] tablet:w[100px] p-4 mb-4 flex flex-col">
                         <div className="flex items-center justify-center space-x-2">
                             <h2>{notification.artefactName}</h2>
                         </div>
