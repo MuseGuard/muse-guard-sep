@@ -11,7 +11,7 @@ const useLogin = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:3000/jwt/login', { password });
+      const response = await axios.post('http://34.88.237.151/jwt/login', { password });
       const { token: responseToken } = response.data;
 
       // Store the token in state
@@ -33,7 +33,7 @@ const useLogin = () => {
     setLoading(true);
 
     try {
-      const response = await axios.patch('http://localhost:3000/jwt/update-password', {
+      const response = await axios.patch('http://34.88.237.151/jwt/update-password', {
         oldPassword,
         newPassword,
       });

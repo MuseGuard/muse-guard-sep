@@ -14,7 +14,7 @@ const PinCode = () => {
       setLoading(true);
 
       console.log(pinCode);
-      const response = await axios.post('http://localhost:3000/pins/comparePin', { pinCode });
+      const response = await axios.post('http://l34.88.237.151/pins/comparePin', { pinCode });
 
 
       setResult(response.data);
@@ -31,7 +31,7 @@ const PinCode = () => {
       setLoading(true);
 
       // Make a PATCH request to update the PIN code
-      const response = await axios.patch('http://localhost:3000/pins/update-pin', {
+      const response = await axios.patch('http://34.88.237.151/pins/update-pin', {
         pinCode: newPinCode,
       });
 

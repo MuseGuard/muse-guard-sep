@@ -42,7 +42,7 @@ const Artefact = () => {
                             className='opacity-50 rounded-3xl px-2 focus:outline-none focus:ring-2 focus:ring-blue-600 '
                         />
                     </div>
-                    <div className="input-container space-x-1">
+                    <div className="input-container space-x-1 flex ">
                         <label>Image URL:</label>
                         <input
                             type="text"
@@ -52,7 +52,7 @@ const Artefact = () => {
                             className='opacity-50 rounded-3xl px-2 focus:outline-none focus:ring-2 focus:ring-blue-600 '
                         />
                     </div>
-                    <div className="input-container space-x-1">
+                    <div className="input-container space-x-1 flex justify-between">
                         <label>Minimum Temperature:</label>
                         <input
                             type="number"
@@ -62,7 +62,7 @@ const Artefact = () => {
                             className='opacity-50 rounded-3xl px-2 focus:outline-none focus:ring-2 focus:ring-blue-600 '
                         />
                     </div>
-                    <div className="input-container space-x-1">
+                    <div className="input-container space-x-1 flex justify-between">
                         <label>Maximum Temperature:</label>
                         <input
                             type="number"
@@ -72,7 +72,7 @@ const Artefact = () => {
                             className='opacity-50 rounded-3xl px-2 focus:outline-none focus:ring-2 focus:ring-blue-600 '
                         />
                     </div>
-                    <div className="input-container space-x-1">
+                    <div className="input-container space-x-1 flex justify-between">
                         <label>Minimum Humidity:</label>
                         <input
                             type="number"
@@ -82,7 +82,7 @@ const Artefact = () => {
                             className='opacity-50 rounded-3xl px-2 focus:outline-none focus:ring-2 focus:ring-blue-600 '
                         />
                     </div>
-                    <div className="input-container space-x-1">
+                    <div className="input-container space-x-1 flex justify-between">
                         <label>Maximum Humidity:</label>
                         <input
                             type="number"
@@ -92,7 +92,7 @@ const Artefact = () => {
                             className='opacity-50 rounded-3xl px-2 focus:outline-none focus:ring-2 focus:ring-blue-600 '
                         />
                     </div>
-                    <div className="input-container space-x-1">
+                    <div className="flex space-x-1 justify-between ">
                         <label>Maximum Light Level:</label>
                         <input
                             type="number"
