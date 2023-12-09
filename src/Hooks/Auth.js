@@ -11,7 +11,7 @@ const useLogin = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post('https://34.88.237.151/jwt/login', { password });
+      const response = await axios.post('http://34.88.237.151/jwt/login', { password });
       const { token: responseToken } = response.data;
 
       // Store the token in state
