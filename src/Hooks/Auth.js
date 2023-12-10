@@ -16,7 +16,6 @@ const useLogin = () => {
 
       // Store the token in state
       setToken(responseToken);
-
       setLoading(false);
       setError(null);
 
