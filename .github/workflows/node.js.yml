@@ -51,6 +51,5 @@ jobs:
       run: |
         git config user.name "GitHub Actions"          
         git config  user.email "actions@github.com"
-        git commit -m "Add Dockerfile and GitHub Actions workflow"
         git push origin master    
 
