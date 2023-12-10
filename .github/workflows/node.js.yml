@@ -47,9 +47,4 @@ jobs:
           github_token: ${{ secrets.PAGE_DEPLOY}}
           publish_dir: ./build  
 
-    - name: Commit and push changes
-      run: |
-        git config user.name "GitHub Actions"          
-        git config  user.email "actions@github.com"
-        git push origin master    
-
+   
