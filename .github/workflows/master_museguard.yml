@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_be75366ef0944e3fa133b2a45c24ee4f }}/vatssal/frontend-image:${{ github.sha }}
+        tags: vatssal/frontend-image
         file: ./Dockerfile
 
   deploy:
