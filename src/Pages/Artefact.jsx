@@ -22,7 +22,7 @@ const Artefact = () => {
                 <h2 className="text-3xl text-center">Add Artefact</h2>
                 <div className="space-y-8">
                     {/* ... Input fields and add button */}
-                    <div className="input-container space-x-1 ">
+                    <div className="input-container space-x-1 flex justify-between">
                         <label>Name:</label>
                         <input
                             type="text"
@@ -32,7 +32,7 @@ const Artefact = () => {
                             className='opacity-50 rounded-3xl px-2 focus:outline-none focus:ring-2 focus:ring-blue-600 '
                         />
                     </div>
-                    <div className="input-container space-x-1">
+                    <div className="input-container space-x-1 flex justify-between">
                         <label>Description:</label>
                         <input
                             type="text"
@@ -42,7 +42,7 @@ const Artefact = () => {
                             className='opacity-50 rounded-3xl px-2 focus:outline-none focus:ring-2 focus:ring-blue-600 '
                         />
                     </div>
-                    <div className="input-container space-x-1 flex ">
+                    <div className="input-container space-x-1 flex justify-between">
                         <label>Image URL:</label>
                         <input
                             type="text"

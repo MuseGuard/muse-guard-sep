@@ -7,7 +7,7 @@ const useNotification = () => {
   const [notifications, setNotifications] = useState([]);
 
   const fetchData = async () => {
-    axios.get('http://34.88.237.151/Warning/getWarnings')
+    axios.get('http://34.36.214.2/Warning/getWarnings')
       .then(response => {
       
         setNotifications(response.data);

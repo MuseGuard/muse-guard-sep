@@ -11,7 +11,7 @@ const useMotionData = () => {
   const fetchData = async () => {
     try {
       // Make a GET request to the API endpoint
-      const response = await axios.get('http://34.88.237.151/motdetect/getDetects');
+      const response = await axios.get('http://34.36.214.2/motdetect/getDetects');
 
       console.log(response);
       // Update the motionData state with the fetched motionData
