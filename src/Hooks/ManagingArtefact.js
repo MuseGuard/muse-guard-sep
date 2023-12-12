@@ -20,7 +20,7 @@ const ManagingArtefact = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(8); // Change this value based on your preference
 
-  const url = "http://34.36.214.2/artifacts/getAllArtifacts";
+  const url = "http://34.88.184.75:3000/artifacts/getAllArtifacts";
 
   const fetchArtefactData = useCallback(() => {
     setIsLoading(true);
@@ -66,7 +66,7 @@ const ManagingArtefact = () => {
     },
     handleArtefact: () => {
       axios
-        .post("http://34.36.214.2/artifacts/postArtifact", artefact)
+        .post("http://34.88.184.75:3000/artifacts/postArtifact", artefact)
         .then((response) => {
           console.log("Artefact Created Successfully", response.data);
         })
@@ -82,7 +82,7 @@ const ManagingArtefact = () => {
     fetchArtefactData,
     handleDeleteArtefact: (name) => {
       axios
-        .delete(`http://34.36.214.2/artifacts/deleteart/${name}`)
+        .delete(`http://34.88.184.75:3000/artifacts/deleteart/${name}`)
         .then((response) => {
           console.log(response.data);
           console.log("Artefact Deleted Successfully");

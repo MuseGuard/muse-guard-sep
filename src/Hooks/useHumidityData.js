@@ -10,7 +10,7 @@ Chart.register(...registerables);
 const useHumidityData = () => {
   const [humiditySensorData, sethumiditySensorData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const url = "http://34.36.214.2/humid/getHumidities"; // Replace with your API endpoint URL
+  const url = "http://34.88.184.75:3000/humid/getHumidities"; // Replace with your API endpoint URL
 
   const humidityData = () => {
     axios
