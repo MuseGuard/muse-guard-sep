@@ -10,7 +10,7 @@ Chart.register(...registerables);
 const useTempData = () => {
   const [tempSensorData, settempSensorData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const url = "http://34.88.184.75:3000/temp/getTemperatures"; // Replace with your API endpoint URL
+  const url = "http://34.88.237.151:3000/temp/getTemperatures"; // Replace with your API endpoint URL
 
   const tempData = () => {
     axios

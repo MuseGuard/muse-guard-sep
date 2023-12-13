@@ -10,7 +10,7 @@ Chart.register(...registerables);
 const useLightData = () => {
   const [lightSesnorData, setlightSesnorData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const url = "http://34.88.184.75:3000/light/getLightLevels"; // Replace with your API endpoint URL
+  const url = "http://34.88.237.151:3000/light/getLightLevels"; // Replace with your API endpoint URL
 
   const lightData = () => {
     //setIsLoading(true);

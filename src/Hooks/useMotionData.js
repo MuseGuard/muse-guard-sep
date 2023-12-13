@@ -11,11 +11,11 @@ const useMotionData = () => {
   const fetchData = async () => {
     try {
       // Make a GET request to the API endpoint
-      const response = await axios.get('http://34.88.184.75:3000/motdetect/getDetects');
+      const response = await axios.get('http://34.88.237.151:3000/motdetect/getDetects');
 
-      console.log(response);
       // Update the motionData state with the fetched motionData
       setMotionData(response.data);
+      console.log(response.data);
     } catch (error) {
       // Update the error state if an error occurs
       setError(error);
@@ -27,6 +27,15 @@ const useMotionData = () => {
 
   useEffect(() => {
     fetchData();
+    const intervalId = setInterval(() => {
+      fetchData();
+      console.log("fetching data");
+    }, 5000);
+  
+
+    // Clean up the interval when the component is unmounted
+    return () => clearInterval(intervalId);
+    
   }, []);
 
   return { motionData, loading, error };

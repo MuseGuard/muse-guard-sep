@@ -115,7 +115,7 @@ const Info = () => {
        <div className="flex justify-center items-center pt-4 bg-white/5"> 
         {motionData && motionData.length > 0 ? (
           <ol>
-            <li>Current Motion: {motionData[0].warning}</li>
+            <li>Current Motion: {motionData[motionData.length-1].warning}</li>
             {/* Add more motion-related information as needed */}
           </ol>
         ) : (

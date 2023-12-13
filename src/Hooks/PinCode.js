@@ -5,8 +5,9 @@ const PinCode = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [result, setResult] = useState(null);
-  const [newPinCode, setNewPinCode] = useState('');
+  const [newPinCode, setNewPinCode] = useState(['','','','']);
   const [successMessage, setSuccessMessage] = useState(null);
+  const pinCodeNumber = parseInt(newPinCode.join(''), 10);
 
 
   const comparePin = async (pinCode) => {
@@ -14,7 +15,7 @@ const PinCode = () => {
       setLoading(true);
 
       console.log(pinCode);
-      const response = await axios.post('http://34.88.184.75:3000/pins/comparePin', { pinCode });
+      const response = await axios.post('http://34.88.237.151:3000/pins/comparePin', { pinCode });
 
 
       setResult(response.data);
@@ -31,9 +32,11 @@ const PinCode = () => {
       setLoading(true);
 
       // Make a PATCH request to update the PIN code
-      const response = await axios.patch('http://34.88.184.75:3000/pins/update-pin', {
-        pinCode: newPinCode,
+      const response = await axios.patch('http://34.88.237.151:3000/pins/update-pin', {
+        pinCode: pinCodeNumber,
       });
+
+      console.log(newPinCode);
 
       setSuccessMessage(response.data.message);
       setError(null);

@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import PinCode from '../Hooks/PinCode';
 
 const ChangePin = () => {
-    const { loading, error, successMessage, handleUpdatePin } = PinCode();
-    const [enteredPin, setEnteredPin] = useState(['', '', '', '']);
+    const { loading, error, successMessage, handleUpdatePin , newPinCode , setNewPinCode} = PinCode();
+    
     const [focusedIndex, setFocusedIndex] = useState(0);
     const inputRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
 
@@ -14,14 +14,16 @@ const ChangePin = () => {
   }, [focusedIndex]);
 
     const handleChange = (index, value) => {
-        const newPin = [...enteredPin];
+        const newPin = [...newPinCode];
         newPin[index] = value.replace(/[^0-9]/g, '').charAt(0); // Allow only numeric input
-        setEnteredPin(newPin);
+        setNewPinCode(newPin);
     
         // Move focus to the next input box
         if (value !== '' && index < 3) {
           setFocusedIndex(index + 1);
         }
+
+        console.log(newPinCode);
       };
     
       const handleKeyDown = (e, index) => {
@@ -32,7 +34,7 @@ const ChangePin = () => {
     return(
         <div className="flex flex-col justify-center items-center space-y-4">
       <div className="pin-input-container space-x-4">
-        {enteredPin.map((digit, index) => (
+        {newPinCode.map((digit, index) => (
           <input
             key={index}
             type="password"
