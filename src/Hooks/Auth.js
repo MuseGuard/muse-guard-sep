@@ -32,7 +32,7 @@ const useLogin = () => {
     setLoading(true);
 
     try {
-      const response = await axios.patch('http://34.36.214.2/jwt/update-password', {
+      const response = await axios.patch('http://34.88.184.75:3000/jwt/update-password', {
         oldPassword,
         newPassword,
       });

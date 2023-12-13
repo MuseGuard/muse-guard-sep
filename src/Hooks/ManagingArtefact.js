@@ -82,7 +82,7 @@ const ManagingArtefact = () => {
     fetchArtefactData,
     handleDeleteArtefact: (name) => {
       axios
-        .delete(`http://34.88.184.75:3000/artifacts/deleteart/${name}`)
+        .delete(`http://34.88.184.75:3000/artifacts/deleteArtifact/${name}`)
         .then((response) => {
           console.log(response.data);
           console.log("Artefact Deleted Successfully");
